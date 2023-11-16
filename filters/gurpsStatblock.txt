@@ -1,0 +1,525 @@
+<html>
+
+<head>
+<title>@{title}</title>
+<STYLE type="text/css" media="screen,print">
+	
+	blockquote, .secret {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-left: .25in;
+		text-indent: 0in;
+		background-color: lightgrey;
+		border: 1px solid gray;
+		padding: 2px;
+	}
+
+	p.normal {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+	}
+
+	p.twocol {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+	}
+
+	h1, p.h1 {
+		margin-top: .25in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 20pt;
+		font-weight: bold;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	h1.title {
+		margin-top: .25in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 20pt;
+		font-weight: bold;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+		text-align: center;
+	}
+
+	h2, p.h2 {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 16pt;
+		font-weight: bold;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	h3, p.h3 {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 14pt;
+		font-weight: bold;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	p.spellhdr {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 12pt;
+		font-weight: bold;
+		font-variant: small-caps;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	h4, p.h4 {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 12pt;
+		font-weight: bold;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	h5, p.h5 {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 12pt;
+		font-weight: italic;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	p.char {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 14pt;
+		font-weight: bold;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	hr { 
+	  display: block;
+	  margin-top: 0.5em;
+	  margin-bottom: 0.5em;
+	  margin-left: 0;
+	  margin-right: auto;
+	  border-style: inset;
+	  border-width: 0;
+	  height: 3px;
+	  color: darkred;
+	  background-color: darkred;
+	  width: 300px;
+	  text-align: left;
+	}
+
+	p.sb {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	p.exdent {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+	}
+
+	p.spell {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+	}
+
+	p.spellfirst {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0.05in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+	}
+
+
+	p.italic {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-style: italic;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+	}
+
+	p, p.indent {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: .25in;
+	}
+
+	p.detail {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		margin-left: .5in;
+		text-indent: -.25in;
+	}
+	
+	td.abil {
+		font-weight: bold;
+		text-align: center;
+	}
+
+	p.desc {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		margin-left: .5in;
+	}
+
+	div.character {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: .25in;
+	}
+
+	p.subpar {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .5in;
+	}
+
+	span.prep {
+		color: darkred;
+	}
+
+	td {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		text-align: center;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: 0in;
+	}
+	
+	ul {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		display: block;
+		list-style-type: disc;
+		text-indent: 0;
+		margin: 0;
+		#padding-left: 1em;
+	}
+	
+	li {
+		margin: 0;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-indent: 0;
+		padding-left: 0;
+	}
+	
+	.entry-title-inner {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		font-style: italic;
+	}
+
+	.tapered-rule {
+		margin-top: .1in;
+		margin-bottom: .1in;
+		display: block;
+		width: 100%;
+		height: 5px;
+		border: none;
+		color: #922610;
+		fill: #922610;
+	}
+	
+	.text-center {
+		text-align: center;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+	}
+	
+	.top-margin {
+		margin-top: 0.05in;
+	}
+	
+</STYLE>
+
+</head>
+
+<body>
+<h1>@{name}</h1>
+@@if{img}
+<p><img src="@{img}" alt="@{name}" width="200"></p>
+@@endif
+@@if{actorType='character'}
+	<p class="exdent">@{classList} (@{xp}/@{nextLevelXP})</p>
+@@end
+<p class="italic">@{size} @{race}, @{alignment}</p>
+<p class="exdent"><b>Armor Class</b> @{ac}@@if{acdetails}&nbsp;(@{acdetails})@@end</p>
+<p class="exdent"><b>Hit Points</b> @{hp} @@if{actorType='npc'} (@{system.attributes.hp.formula})@@end</p>
+<p class="exdent"><b>Speed</b> @{speed}</p>
+<p class="exdent"><b>Proficiency Bonus</b> @{prof}</p>
+
+<svg height="5" width="100%" class="tapered-rule">
+  <polyline points="0,0 400,2.5 0,5" stroke="darkred"></polyline>
+</svg>
+
+<p>ST @{system.attributes.ST.import} [@{system.attributes.ST.points}]</p>
+
+<table border="0" cellpadding="2" cellspacing="0" width="400">
+  <tr>
+    <td class="abil">ST</td>
+    <td class="abil">CON</td>
+    <td class="abil">DEX</td>
+    <td class="abil">INT</td>
+    <td class="abil">WIS</td>
+    <td class="abil">CHA</td>
+  </tr>
+  <tr>
+    <td align="center">@{system.attributes.ST.import}<br>[@{system.attributes.ST.points}]</td>
+    <td align="center">@{dex}<br>(@{sign(dexMod)})</td>
+    <td align="center">@{con}<br>(@{sign(conMod)})</td>
+    <td align="center">@{int}<br>(@{sign(intMod)})</td>
+    <td align="center">@{wis}<br>(@{sign(wisMod)})</td>
+    <td align="center">@{cha}<br>(@{sign(chaMod)})</td>
+  </tr>
+</table>
+
+<svg height="5" width="100%" class="tapered-rule">
+  <polyline points="0,0 400,2.5 0,5" stroke="darkred"></polyline>
+</svg>
+
+
+<p class="exdent"><b>Saving Throws</b> Str @{sign(strSave)}, Dex @{sign(dexSave)}, Con @{sign(conSave)},
+Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
+@@if{languages}
+<p class="exdent"><b>Languages</b> @{languages}</p>
+@@end
+@@if{senses}
+<p class="exdent"><b>Senses</b> @{senses}</p>
+@@end
+@@if{weaponProficiencies}
+<p class="exdent"><b>Weapon Proficiencies</b> @{weaponProficiencies}</p>
+@@end
+@@if{armorProficiencies}
+<p class="exdent"><b>Armor Proficiencies</b> @{armorProficiencies}</p>
+@@end
+@@if{toolProficiencies}
+<p class="exdent"><b>Tool Proficiencies</b> @{toolProficiencies}</p>
+@@end
+@@if{actorType != 'character'}
+<p class="exdent"><b>Challenge</b> @{system.details.cr} (@{system.details.xp.value} XP)</p>
+@@endif
+@@if{damageResistances}
+<p class="exdent"><b>Damage Resistances</b> @{damageResistances}</p>
+@@end
+@@if{damageImmunities}
+<p class="exdent"><b>Damage Immunities</b> @{damageImmunities}</p>
+@@end
+@@if{damageVulnerabilities}
+<p class="exdent"><b>Damage Vulnerabilities</b> @{damageVulnerabilities}</p>
+@@end
+@@if{conditionResistances}
+<p class="exdent"><b>Condition Immunities</b> @{conditionImmunities}</p>
+@@end
+
+@@if{system.details.biography.value || system.details.appearance || system.details.trait || system.details.ideal }
+@@if{actorType = 'character'}
+<h2>Biography</h2>
+@@end
+@@if{actorType != 'character'}
+<h2>Description</h2>
+@@end
+@@if{system.details.biography.value}
+<p class='indent'>@{system.details.biography.value}</p>
+@@end
+@@if{system.details.appearance}
+<p class='indent'><b>Appearance:</b> @{system.details.appearance}</p>
+@@end
+@@if{system.details.trait}
+<p class='indent'><b>Personality Traits:</b> @{system.details.trait}</p>
+@@end
+@@if{system.details.ideal}
+<p class='indent'><b>Ideals:</b> @{system.details.ideal}</p>
+@@end
+@@if{system.details.bond}
+<p class='indent'><b>Bonds:</b> @{system.details.bond}</p>
+@@end
+@@if{system.details.flaw}
+<p class='indent'><b>Flaws:</b> @{system.details.flaw}</p>
+@@end
+@@end
+
+@@if{count('weapon')>0}
+	<h2>Attacks</h2>
+	@@foreach{weapon}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@endif
+	@@endforeach
+@@endif
+
+@@if{count('class') > 0 && showDetails}
+	@@foreach{class}
+		<h2>@{itemname} @{item.system.levels}</h2>
+		<p class="desc">@{itemdetails}</p>
+	@@endforeach
+@@endif
+
+@@if{count('subclass') > 0 && showDetails}
+	@@foreach{subclass}
+		<h2>@{itemname}</h2>
+		<p class="desc">@{itemdetails}</p>
+	@@endforeach
+@@endif
+
+@@if{count('feat') > 0}
+	<h2>Features</h2>
+	@@foreach{feat}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@endif
+	@@endforeach
+@@end
+
+@@if{count('equipment') > 0}
+	<h2>Equipment</h2>
+	@@foreach{equipment}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+	@@end
+@@end
+@@if{count('consumable') > 0}
+	<h2>Consumables</h2>
+	@@foreach{consumable}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+	@@end
+@@end
+@@if{count('backpack') > 0}
+	<h2>Containers</h2>
+	@@foreach{backpack}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails && itemdetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+	@@end
+@@end
+@@if{count('tool') > 0}
+	<h2>Tools</h2>
+	@@foreach{tool}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails && itemdetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+	@@end
+@@end
+@@if{count('loot') > 0}
+	<h2>Treasure</h2>
+	@@foreach{loot}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails && itemdetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+	@@end
+@@end
+
+@@if{count('spell') > 0}
+	<h2>Spellcasting</h2>
+	@@if{spellcasting}
+		<p class="exdent">@{spellcasting}</p>
+	@@end
+	@@define{spells = ''}
+	@@foreach{spell}
+		@@if{item.system.level = 0}
+			@@define{spells = concat(spells, ', ', itemname)}
+		@@endif
+	@@endforeach
+	@@if{spells}
+		<p><b>Cantrip:</b> @{spells}</p>
+	@@endif
+	@@for{slot=1; slot < 10; slot = slot + 1}
+		@@define{nslots = *('system.spells.spell' + slot + '.max')}
+		@@if{nslots > 0}
+			<p><b>Level @{slot}</b> (@{nslots}):
+			@@define{spells = ''}
+			@@foreach{spell}
+				@@if{item.system.level = slot}
+					@@define{prepared=''}
+					@@if{item.system.preparation.mode = 'prepared' && item.system.preparation.prepared}
+						@@define{prepared='•'}
+					@@endif
+					@@define{spells = concat(spells, ', ', prepared + itemname)}
+				@@endif
+			@@endforeach
+			@@if{spells}@{spells}@@endif
+			</p>
+		@@endif
+	@@endfor
+@@endif
+
+@@if{count('spell') > 0 && showSpellbook}
+	<h2>Spells</h2>
+	@@foreach{spell}
+		<p class="spellhdr">@{itemname}</p>
+		<p class="italic">@{spellLevel}</p>
+		<p class="spellfirst"><b>Casting Time:</b> @{spellCastTime}</p>
+		<p class="spell"><b>Range:</b> @{spellRange}</p>
+		<p class="spell"><b>Components:</b> @{spellComponents}</p>
+		<p class="spell"><b>Duration:</b> @{spellDuration}</p>
+		<p class="desc">@{itemdetails}</p>
+	@@endforeach
+@@endif
+
+</body>
+
+</html>

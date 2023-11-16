@@ -1,0 +1,288 @@
+<html>
+
+<head>
+<title>@{title}</title>
+<STYLE type="text/css" media="screen,print">
+	
+	
+</STYLE>
+
+</head>
+
+<body>
+<h1>@{name}</h1>
+@@if{img}
+<p><img src="@{img}" alt="@{name}" width="200"></p>
+@@endif
+@@if{actorType='character'}
+	<p class="exdent">@{classList} (@{xp}/@{nextLevelXP})</p>
+@@end
+<p class="italic">@{size} @{race}, @{alignment}</p>
+<p class="exdent"><b>Armor Class</b> @{ac}@@if{acdetails}&nbsp;(@{acdetails})@@end</p>
+<p class="exdent"><b>Hit Points</b> @{hp} @@if{actorType='npc'} (@{system.attributes.hp.formula})@@end</p>
+<p class="exdent"><b>Speed</b> @{speed}</p>
+<p class="exdent"><b>Proficiency Bonus</b> @{prof}</p>
+
+<svg height="5" width="100%" class="tapered-rule">
+  <polyline points="0,0 300,2.5 0,5" stroke="darkred"></polyline>
+</svg>
+
+<table border="0" cellpadding="2" cellspacing="0" width="300">
+  <tr>
+    <td class="abil">STR</td>
+    <td class="abil">CON</td>
+    <td class="abil">DEX</td>
+    <td class="abil">INT</td>
+    <td class="abil">WIS</td>
+    <td class="abil">CHA</td>
+  </tr>
+  <tr>
+    <td align="center">@{str}<br>(@{sign(strMod)})</td>
+    <td align="center">@{dex}<br>(@{sign(dexMod)})</td>
+    <td align="center">@{con}<br>(@{sign(conMod)})</td>
+    <td align="center">@{int}<br>(@{sign(intMod)})</td>
+    <td align="center">@{wis}<br>(@{sign(wisMod)})</td>
+    <td align="center">@{cha}<br>(@{sign(chaMod)})</td>
+  </tr>
+</table>
+
+<svg height="5" width="100%" class="tapered-rule">
+  <polyline points="0,0 300,2.5 0,5" stroke="darkred"></polyline>
+</svg>
+
+@@macro{trait(TITLE, TRAIT)}
+	@@if{TRAIT}
+		<p class="exdent"><b>TITLE</b> @{TRAIT}</p>
+	@@end
+@@endmacro
+
+@@call{trait(Skills, skills)}
+<p class="exdent"><b>Saving Throws</b> Str @{sign(strSave)}, Dex @{sign(dexSave)}, Con @{sign(conSave)},
+Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
+@@call{trait(Languages, languages)}
+@@call{trait(Senses, senses)}
+@@call{trait(Weapon Proficiencies, weaponProficiencies)}
+@@call{trait(Armor Proficiencies, armorProficiencies)}
+@@call{trait(Tool Proficiencies, toolProficiencies)}
+@@if{actorType != 'character'}
+	<p class="exdent"><b>Challenge</b> @{system.details.cr} (@{system.details.xp.value} XP)</p>
+@@endif
+@@call{trait(Damage Resistances, damageResistances)}
+@@call{trait(Damage Immunities, damageImmunities)}
+@@call{trait(Damage Vulnerabilities, damageVulnerabilities)}
+@@call{trait(Condition Immunities, conditionImmunities)}
+
+@@if{system.details.biography.value || system.details.appearance || system.details.trait || system.details.ideal }
+@@if{actorType = 'character'}
+<h2>Biography</h2>
+@@end
+@@if{actorType != 'character'}
+<h2>Description</h2>
+@@end
+@@if{system.details.biography.value}
+<p class='indent'>@{system.details.biography.value}</p>
+@@end
+@@if{system.details.appearance}
+<p class='indent'><b>Appearance:</b> @{system.details.appearance}</p>
+@@end
+@@if{system.details.trait}
+<p class='indent'><b>Personality Traits:</b> @{system.details.trait}</p>
+@@end
+@@if{system.details.ideal}
+<p class='indent'><b>Ideals:</b> @{system.details.ideal}</p>
+@@end
+@@if{system.details.bond}
+<p class='indent'><b>Bonds:</b> @{system.details.bond}</p>
+@@end
+@@if{system.details.flaw}
+<p class='indent'><b>Flaws:</b> @{system.details.flaw}</p>
+@@end
+@@end
+
+@@if{count('background')>0}
+	<h2>Background</h2>
+	@@foreach{background}
+		<p class="exdent"><b>@{itemname}</b></p>
+		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@endif
+	@@endforeach
+@@endif
+
+@@if{count('weapon')>0}
+	<h2>Attacks</h2>
+	@@foreach{weapon}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@endif
+	@@endforeach
+@@endif
+
+@@if{count('class') > 0 && showDetails}
+	@@foreach{class}
+		<h2>@{itemname} @{item.system.levels}</h2>
+		@@if{itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@endif
+	@@endforeach
+@@endif
+
+@@if{count('subclass') > 0 && showDetails}
+	@@foreach{subclass}
+		<h2>@{itemname}</h2>
+		@@if{itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@endif
+	@@endforeach
+@@endif
+
+@@if{count('feat') > 0}
+	<h2>Features</h2>
+	@@foreach{feat}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@endif
+	@@endforeach
+@@end
+
+@@if{count('equipment') > 0}
+	<h2>Equipment</h2>
+	@@foreach{equipment}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+	@@end
+@@end
+@@if{count('consumable') > 0}
+	<h2>Consumables</h2>
+	@@foreach{consumable}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+	@@end
+@@end
+@@macro{coin(COIN)}
+@@if{item.system.currency.COIN}@{cdelim}@{item.system.currency.COIN}COIN@@define{cdelim=', '}@@endif
+@@endmacro
+@@macro{currency(lm)}
+@@if{item.system.currency.cp || item.system.currency.sp || item.system.currency.ep || item.system.currency.gp || item.system.currency.pp}
+	<p style="margin-left: ${lm}">Coins: @@define{cdelim=''}@@call{coin(pp)}@@call{coin(gp)}@@call{coin(ep)}@@call{coin(sp)}@@call{coin(cp)}</p>
+@@endif
+@@endmacro
+@@if{count('backpack') > 0}
+	<h2>Containers</h2>
+	@@foreach{backpack}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@call{currency(.25in)}
+		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+		<!-- Check for itemcollection entries. -->
+		@@if{count('item.items')>0}
+			<div style="margin-left: 0.25in">
+			@@foreach{item.items}
+				<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+				@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+					<p class="exdent">@{itemdetails}</p>
+				@@end
+				@@call{currency(.5in)}
+				@@if{count('item.items')>0}
+					<div style="margin-left: 0.25in">
+					@@foreach{item.items}
+						<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+						@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+							<p class="exdent">@{itemdetails}</p>
+						@@end
+						@@call{currency(.25in)}
+						@@if{count('item.items')>0}
+							<div style="margin-left: 0.5in">
+							@@foreach{item.items}
+								<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+								@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+									<p class="exdent">@{itemdetails}</p>
+								@@end
+								@@call{currency(.25in)}
+							@@endforeach
+							</div>
+						@@endif
+					@@endforeach
+					</div>
+				@@endif
+			@@endforeach
+			</div>
+		@@endif
+	@@end
+@@end
+@@if{count('tool') > 0}
+	<h2>Tools</h2>
+	@@foreach{tool}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+	@@end
+@@end
+@@if{count('loot') > 0}
+	<h2>Treasure</h2>
+	@@foreach{loot}
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+			<p class="desc">@{itemdetails}</p>
+		@@end
+	@@end
+@@end
+
+@@if{count('spell') > 0}
+	<h2>Spellcasting</h2>
+	@@if{spellcasting}
+		<p class="exdent">@{spellcasting}</p>
+	@@end
+	@@define{spells = ''}
+	@@foreach{spell}
+		@@if{item.system.level = 0}
+			@@define{spells = concat(spells, ', ', itemname)}
+		@@endif
+	@@endforeach
+	@@if{spells}
+		<p><b>Cantrip:</b> @{spells}</p>
+	@@endif
+	@@for{slot=1; slot < 10; slot = slot + 1}
+		@@define{nslots = *('system.spells.spell' + slot + '.max')}
+		@@if{nslots > 0}
+			<p><b>Level @{slot}</b> (@{nslots}):
+			@@define{spells = ''}
+			@@foreach{spell}
+				@@if{item.system.level = slot}
+					@@define{prepared=''}
+					@@if{item.system.preparation.mode = 'prepared' && item.system.preparation.prepared || item.system.preparation.mode = 'always' }
+						@@define{prepared='•'}
+					@@endif
+					@@define{spells = concat(spells, ', ', prepared + itemname)}
+				@@endif
+			@@endforeach
+			@@if{spells}@{spells}@@endif
+			</p>
+		@@endif
+	@@endfor
+@@endif
+
+@@if{count('spell') > 0 && showSpellbook}
+	<h2>Spells</h2>
+	@@foreach{spell}
+		<p class="spellhdr">@{itemname}</p>
+		<p class="italic">@{spellLevel}</p>
+		<p class="spellfirst"><b>Casting Time:</b> @{spellCastTime}</p>
+		<p class="spell"><b>Range:</b> @{spellRange}</p>
+		<p class="spell"><b>Components:</b> @{spellComponents}</p>
+		<p class="spell"><b>Duration:</b> @{spellDuration}</p>
+		<p class="desc">@{itemdetails}</p>
+	@@endforeach
+@@endif
+
+</body>
+
+</html>

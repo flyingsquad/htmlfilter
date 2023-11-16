@@ -1,0 +1,540 @@
+<html>
+
+<head>
+<title>@{title}</title>
+<STYLE type="text/css" media="screen,print">
+	
+	blockquote, .secret {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-left: .25in;
+		text-indent: 0in;
+		background-color: lightgrey;
+		border: 1px solid gray;
+		padding: 2px;
+	}
+
+	p.normal {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+	}
+
+	p.twocol {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+	}
+
+	h1, p.h1 {
+		margin-top: .25in;
+		margin-bottom: 0in;
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 20pt;
+		font-weight: bold;
+		color: black;
+		text-indent: 0in;
+		margin-left: 0in;
+		border-bottom: 1px black solid;
+	}
+	
+	img {
+		vertical-align:middle;
+		display:inline;
+	}
+	
+	.traits {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 9pt; 
+		font-weight: bold; 
+		background-color: darkred;
+		color: white;
+	}
+
+	h1.title {
+		margin-top: .25in;
+		margin-bottom: 0in;
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 20pt;
+		font-weight: bold;
+		color: black;
+		text-indent: 0in;
+		margin-left: 0in;
+		text-align: center;
+	}
+
+	h2.f {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 16pt;
+		font-weight: bold;
+		font-style: normal;
+		color: black;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	h2, p.h2 {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 12pt;
+		font-weight: bold;
+		font-style: italic;
+		color: black;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	h3, p.h3 {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		font-weight: bold;
+		color: black;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	p.spellhdr {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 12pt;
+		font-weight: bold;
+		font-variant: small-caps;
+		color: black;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	h4, p.h4 {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 12pt;
+		font-weight: bold;
+		color: black;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	h5, p.h5 {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 12pt;
+		font-weight: italic;
+		color: black;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	p.char {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 14pt;
+		font-weight: bold;
+		color: black;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	hr { 
+	  display: block;
+	  margin-top: 0.5em;
+	  margin-bottom: 0.5em;
+	  margin-left: 0;
+	  margin-right: auto;
+	  border-style: inset;
+	  border-width: 0;
+	  height: 1px;
+	  color: gray;
+	  background-color: gray;
+	  width: 300px;
+	  text-align: left;
+	}
+
+	p.sb {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-indent: 0in;
+		margin-left: 0in;
+	}
+
+	p.exdent {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+	}
+
+	p.subex {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .5in;
+	}
+
+	p.spell {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+	}
+
+	p.spellfirst {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0.05in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+	}
+
+
+	p.italic {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-style: italic;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+	}
+
+	p, p.indent {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: .25in;
+	}
+
+	p.detail {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		margin-left: .5in;
+		text-indent: -.25in;
+	}
+	
+	td.abil {
+		font-weight: bold;
+		text-align: center;
+	}
+
+	p.desc {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		margin-left: .5in;
+	}
+
+	.subdesc {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		margin-left: 0.25in;
+	}
+
+	div.character {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: .25in;
+	}
+
+	p.subpar {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .5in;
+	}
+
+	span.prep {
+		color: black;
+	}
+
+	td {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		text-align: center;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: 0in;
+	}
+	
+	ul {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		display: block;
+		list-style-type: disc;
+		text-indent: 0;
+		margin: 0;
+		#padding-left: 1em;
+	}
+	
+	li {
+		margin: 0;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-indent: 0;
+		padding-left: 0;
+	}
+	
+	.entry-title-inner {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		font-style: italic;
+	}
+
+	.tapered-rule {
+		margin-top: .1in;
+		margin-bottom: .1in;
+		display: block;
+		width: 100%;
+		height: 5px;
+		border: none;
+		color: #922610;
+		fill: #922610;
+	}
+	
+	.text-center {
+		text-align: center;
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+	}
+	
+	.top-margin {
+		margin-top: 0.05in;
+	}
+	
+	.left-margin {
+		margin-left: 0.5in;
+	}
+	
+</STYLE>
+
+</head>
+
+<body>
+@@macro{traits()}
+@@foreach{item.system.traits.value}<span class="traits"> @{toupper(item)} </span>&nbsp;@@endforeach
+@@endmacro
+@@macro{coin(COIN, DELIM)}@@if{item.system.price.value.COIN}@{DELIM}@{item.system.price.value.COIN}COIN@@define{DELIM=', '}@@endif@@endmacro
+@@macro{price(DELIM)}
+@@call{coin(pp, DELIM)}@@call{coin(gp, DELIM)}@@call{coin(sp, DELIM)}@@call{coin(ep, DELIM)}@@call{coin(cp, DELIM)}
+@@endmacro
+
+<h1>@{name}<span style="float: right;">Level @{system.details.level.value}</span></h1>
+@@if{img}
+<p><img src="@{img}" alt="@{name}" height="@{imgheight}"></p>
+@@endif
+<p class="exdent"><b>Perception</b> @{sign(system.attributes.perception.value)}</p>
+
+<p class="italic">@{size} @{race}, @{alignment}</p>
+<p class="exdent"><b>Proficiency Bonus</b> @{prof}</p>
+
+<hr>
+<p class="exdent"><b>Skills</b>
+@@define{delim=''}
+@@foreach{system.skills}@@if{item.rank>0}@{delim}@{initcap(item.slug)} @{sign(item.value)}@@define{delim=', '}@@endif@@endforeach
+</p>
+@@macro{ability(NAME, REF)}<b>NAME</b> @{sign(system.abilities.REF.mod)}@@endmacro
+<p class="exdent">@@call{ability(Str, str)}, @@call{ability(Dex, dex)}, @@call{ability(Con, con)}, @@call{ability(Int, int)}, @@call{ability(Wis, wis)}, @@call{ability(Cha, cha)}</p>
+<hr>
+@@macro{save(SAVE)}<b>@{system.saves.SAVE.label}</b> @{sign(system.saves.SAVE.value)}@@endmacro
+<p class="exdent"><b>AC</b> @{system.attributes.ac.value}; @@call{save(fortitude)}, @@call{save(reflex)}, @@call{save(will)}</p>
+@@if{system.attributes.classDC.dc}<p class="exdent"><b>Class DC</b> @{system.attributes.classDC.dc}</p>@@endif
+<p class="exdent"><b>HP</b> @{system.attributes.hp.max}</p>
+<hr>
+<p class="exdent"><b>Speed</b> @{speed}</p>
+
+@@if{languages}
+<p class="exdent"><b>Languages</b> @{languages}</p>
+@@end
+
+@@if{system.details.biography.value || system.details.appearance || system.details.trait || system.details.ideal }
+@@if{actorType = 'character'}
+<h2 class="f">Biography</h2>
+@@end
+@@if{actorType != 'character'}
+<h2 class="f">Description</h2>
+@@end
+@@if{system.details.biography.value}
+<p class='indent'>@{system.details.biography.value}</p>
+@@end
+@@if{system.details.appearance}
+<p class='indent'><b>Appearance:</b> @{system.details.appearance}</p>
+@@end
+@@if{system.details.trait}
+<p class='indent'><b>Personality Traits:</b> @{system.details.trait}</p>
+@@end
+@@if{system.details.ideal}
+<p class='indent'><b>Ideals:</b> @{system.details.ideal}</p>
+@@end
+@@if{system.details.bond}
+<p class='indent'><b>Bonds:</b> @{system.details.bond}</p>
+@@end
+@@if{system.details.flaw}
+<p class='indent'><b>Flaws:</b> @{system.details.flaw}</p>
+@@end
+@@end
+
+@@macro{actionIcon(NUMBER)}
+@@if{NUMBER=1}<img src="systems/pf2e/icons/actions/OneAction.webp" alt="@{NUMBER} action" height="16"></img>@@endif
+@@if{NUMBER=2}<img src="systems/pf2e/icons/actions/TwoActions.webp" alt="@{NUMBER} actions" height="16"></img>@@endif
+@@if{NUMBER=3}<img src="systems/pf2e/icons/actions/ThreeActions.webp" alt="@{NUMBER} actions" height="16"></img>@@endif
+@@endmacro
+<!--
+        "damage": {
+          "dice": 1,
+          "die": "d6",
+          "damageType": "piercing",
+          "persistent": null,
+          "value": ""
+        },
+        "bonusDamage": {
+          "value": 0
+        },
+        "splashDamage": {
+          "value": 0
+        },
+		
+        "damage": {
+          "dice": 1,
+          "die": "",
+          "damageType": "acid",
+          "persistent": {
+            "faces": 6,
+            "number": 1,
+            "type": "acid"
+          }
+        },
+-->
+
+@@macro{item()}
+	<p class="exdent"><b>@{item.name}</b>
+	@@define{delim=''}@@if{item.system.quantity>1}&times;@{item.system.quantity}@@define{delim=', '}@@endif
+	@@if{actions}@@call{actionIcon(actions)}@@endif
+	@@if{atkbonus}@{delim}@@if{actions=0}@@call{actionIcon(1)}@@endif&nbsp;@{atkbonus}@@define{delim=', '}@@endif
+	@@if{damage}@{delim}<b>Damage</b> @{damage}@@define{delim=', '}@@endif
+	@@if{item.system.range}@{delim}<b>Range</b> @{item.system.range} feet@@define{delim=', '}@@endif
+	@@if{item.system.stackGroup!='coins'}@@call{price(delim)}@@endif
+	</p>
+	@@if{item.system.traits.value}<p>@@call{traits()}</p>@@endif
+	@@if{showDetails && item.system.description.value && strlength(item.system.description.value) <= maxDetails}
+		<p class="desc">@{item.system.description.value}</p>
+	@@endif
+@@endmacro
+@@macro{itemList(TYPE, TITLE)}
+@@if{count('TYPE') > 0}
+	<h2 class="f">TITLE</h2>
+	@@foreach{TYPE}
+		@@if{!item.system.containerId}
+			@@call{item()}
+		@@endif
+	@@endforeach
+@@endif
+@@endmacro
+@@call{itemList(melee, Melee Attacks)}
+@@call{itemList(ranged, Ranged Attacks)}
+
+@@call{itemList(weapon, Weapons)}
+@@call{itemList(action, Actions)}
+
+@@call{itemList(ancestry, Ancestry)}
+@@call{itemList(heritage, Heritage)}
+@@call{itemList(class, Class)}
+@@call{itemList(subclass, Subclass)}
+@@call{itemList(feat, Features)}
+@@call{itemList(equipment, Equipment)}
+@@call{itemList(consumable, Consumables)}
+@@call{itemList(treasure, Treasure)}
+
+@@if{count('backpack') > 0}
+	<h2 class="f">Containers</h2>
+	@@foreach{backpack}
+		@@call{item()}
+		@@define{containerid=item._id}
+		@@foreach{items}
+			@@if{item.system.containerId = containerid}
+				<div class="subdesc">
+				@@call{item()}
+				</div>
+			@@endif
+		@@endforeach
+	@@endforeach
+@@endif
+
+@@if{count('spell') > 0}
+	<h2 class="f">Spellcasting</h2>
+	@@if{spellcasting}
+		<p class="exdent">@{spellcasting}</p>
+	@@end
+	@@define{spells = ''}
+	@@foreach{spell}
+		@@if{item.system.level = 0}
+			@@define{spells = concat(spells, ', ', item.name)}
+		@@endif
+	@@endforeach
+	@@if{spells}
+		<p><b>Cantrip:</b> @{spells}</p>
+	@@endif
+	@@for{slot=1; slot < 10; slot = slot + 1}
+		@@define{nslots = *('system.spells.spell' + slot + '.max')}
+		@@if{nslots > 0}
+			<p><b>Level @{slot}</b> (@{nslots}):
+			@@define{spells = ''}
+			@@foreach{spell}
+				@@if{item.system.level = slot}
+					@@define{prepared=''}
+					@@if{item.system.preparation.mode = 'prepared' && item.system.preparation.prepared}
+						@@define{prepared='•'}
+					@@endif
+					@@define{spells = concat(spells, ', ', prepared + item.name)}
+				@@endif
+			@@endforeach
+			@@if{spells}@{spells}@@endif
+			</p>
+		@@endif
+	@@endfor
+@@endif
+
+@@if{count('spell') > 0 && showSpellbook}
+	<h2 class="f">Spells</h2>
+	@@foreach{spell}
+		<p class="spellhdr">@{item.name}</p>
+		<p class="exdent">@@call{traits()}</p>
+		<p class="italic">@@if{item.system.level.value=0}Cantrip@@endif@@if{item.system.level.value}Level @{item.system.level.value}@@endif&nbsp;(@{item.system.school.value})</p>
+		<p class="spellfirst"><b>Cast Time:</b> @@call{actionIcon(item.system.time.value)}@{item.system.time.value}</p>
+		@@if{item.system.range.value}<p class="spell"><b>Range:</b> @{item.system.range.value}</p>@@endif
+		<p class="spell"><b>Components:</b>  @@if{item.system.components.verbal}V@@endif@@if{item.system.components.somatic}S@@endif@@if{item.system.components.material}M@@endif@@if{item.system.components.focus} (focus)@@endif</p>
+		@@if{item.system.duration.value}<p class="spell"><b>Duration:</b> @{item.system.duration.value}</p>@@endif
+		<p class="desc">@{item.system.description.value}</p>
+	@@endforeach
+@@endif
+
+</body>
+
+</html>

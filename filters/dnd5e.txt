@@ -1,0 +1,644 @@
+<html>
+<html>
+
+<head>
+<title>@{title}</title>
+
+<style>
+	p {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 10pt;
+		font-weight: normal;
+		margin-top: 0;
+		margin-bottom: 0;
+		text-align: justify;
+		text-indent: .1in;
+	}
+	
+	.x {
+		text-indent: 0;
+	}
+	
+	just {
+		text-align: justify;
+	}
+
+	td {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 10pt;
+		font-weight: normal;
+		vertical-align: top;
+	}
+	tr {
+		vertical-align: top;
+	}
+	
+	.saves {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	.label {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 7pt;
+		width: 20%;
+		vertical-align: top;
+	}
+	
+	p.skill .skill .skv .skn {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-align: left;
+	}
+
+	p.spellhdr {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 12pt;
+		font-weight: bold;
+		font-variant: small-caps;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+		break-after: avoid;
+	}
+
+	p.spell {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+		break-after: avoid;
+	}
+
+	p.spellfirst {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 10pt;
+		margin-top: 0.05in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+		break-after: avoid;
+	}
+
+
+	p.italic {
+		font-family: "Times New Roman", "Times", serif;
+		font-style: italic;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+		break-after: avoid;
+	}
+
+	h2 {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 16pt;
+		font-weight: bold;
+		margin-bottom: 0;
+		margin-top: 10pt;
+	}
+
+	th {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	.skills {
+		width: 2in;
+	}
+	.skv {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-align: center;
+		width: 20pt;
+	}
+	.skl {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-align: center;
+		margin-top: .1in;
+		text-indent: 0;
+	}
+	.skn {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		width: 80%;
+	}
+	.skp {
+		font-family: "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		width: 10pt;
+	}
+
+	.sl {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 7pt;
+		text-align: center;
+	}
+	
+	.name {
+		font-family: "Georgia", "Garamond", "Times New Roman", "Times", serif;
+		font-size: 12pt;
+		font-weight: bold;
+		width: 150pt;
+	}
+	.img {
+	}
+	
+	table {
+		border: 0pt;
+	}
+	
+	.thinb {
+		border: gray 1pt solid;
+		border-radius: 6px;
+		padding: 2pt;
+	}
+	
+	.tl {
+		border-top: gray 1pt solid;
+	}
+	
+	.bl {
+		border-left: gray 1pt solid;
+	}
+	.br {
+		border-right: gray 1pt solid;
+	}
+	.bb {
+		border-bottom: gray 1pt solid;
+	}
+	
+	.hd {
+		text-align: center;
+		border-bottom: gray 1pt solid;
+		width: 25%;
+	}
+	
+	.bp {
+		padding-bottom: .3in;
+	}
+	
+	.mb {
+		margin-bottom: 4pt;
+	}
+	
+	.mt {
+		margin-top: 4pt;
+	}
+	
+	.ability {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 18pt;
+		text-align: center;
+		text-indent: 0;
+	}
+
+	.abilmod {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 12pt;
+		text-align: center;
+	}
+	
+	.vab {
+		vertical-align: bottom;
+	}
+
+	.ci {
+		width: 40%;
+	}
+
+	.table {
+		display: table;
+		width: 8.5in;
+	}
+	.row {
+		display: table-row;
+	}
+	.cell {
+		display: table-cell;
+	}
+	.col {
+		display: table-column;
+	}
+
+	.fullwidth {
+		width: 8in;
+	}
+	.thirdwidth {
+		width: 2.5in;
+	}
+	span.btn {
+		font-family: "Arial", "Helvetica", "sans-serif";
+		width: 8pt;
+		onclick: "chk(this.id)";
+	}
+	
+	.spells {
+		width: 8in;
+		column-count: 3;
+		column-gap: 16pt;
+		column-rule-style: solid;
+		column-rule-width: 1pt;
+		column-rule-color: lightgray;
+	}
+
+	p.desc {
+		font-family: "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		margin-left: .5in;
+	}
+
+	.lev {
+		font-family: "Arial", "Helvetica", "sans-serif";
+		font-weight: bold;
+		font-size: 14pt;
+		border: black 2pt solid;
+		text-align: center;
+		margin-top: .10in;
+		border-radius: 10px;
+	}
+	
+	.slot {
+		width: 0.5in; 
+		display: inline-block;
+		text-align: center;
+	}
+	
+	.sc {
+		font-weight: bold;
+		font-size: 12pt;
+		margin-top: 2pt;
+		text-indent: 0;
+	}
+	
+</style>
+
+<script>
+
+function chk(id) {
+	let elt = document.getElementById(id);
+	if (elt.innerHTML == '\u25EF')
+		elt.innerHTML = '\u25C9';
+	else
+		elt.innerHTML = '\u25EF';
+}
+
+function edit(id) {
+	let elt = document.getElementById(id);
+	elt.contentEditable = 'true';
+}
+
+</script>
+
+</head>
+
+<body>
+@@macro{detail(TITLE, DETAIL)}
+	@@if{system.details.DETAIL}
+		<tr><th>TITLE</th></tr>
+		<tr><td class="thinb just">@{system.details.DETAIL}</td></tr>
+	@@endif
+@@endmacro
+@@macro{trait(TITLE, TRAIT)}
+	@@if{TRAIT}
+		<p class="x"><b>TITLE</b> @{TRAIT}</p>
+	@@end
+@@endmacro
+<form>
+<table class="fullwidth mb" style="break-before: page">
+ <tr>
+	<td class="bb" colspan="3">
+		<table width="100%">
+			<tr>
+			@@if{img && imgheight}
+			<td rowspan="8" class="img"><img src="@{img}" alt="@{name}" height="@{imgheight}"></td>
+			@@endif
+			</tr>
+			<tr>
+			<td colspan="2" class="name bb" style="vertical-align: middle;">@{name}</td>
+			</tr>
+			<tr>
+			<td class="bb vab ci">@{classList}</td>
+			<td class="bb vab ci">@{playername}</td>
+			</tr>
+			<tr>
+			<td class="label ci">CLASS &amp; LEVEL</td>
+			<td class="label ci">PLAYER NAME</td>
+			</tr>
+			<tr>
+			<td class="bb vab ci">@{race}</td>
+			<td class="bb vab ci">@{alignment}</td>
+			</tr>
+			<tr>
+			<td class="label ci">RACE</td>
+			<td class="label ci">ALIGNMENT</td>
+			</tr>
+			<tr>
+			<td class="bb vab ci">@{background}</td>
+			<td class="bb vab ci">@{xp}/@{nextLevelXP}</td>
+			</tr>
+			<tr>
+			<td class="label">BACKGROUND</td>
+			<td class="label">EXPERIENCE POINTS</td>
+			</tr>
+		</table>
+	<td>
+  </tr>
+
+	<tr>
+	<td class="thirdwidth">
+		<table>
+			<tr>
+			<td>
+				<table style="width: 30%">
+					<tr><td class="sl">STRENGTH</td></tr>
+					<tr><td class="ability">@{str}</td></tr>
+					<tr><td class="abilmod bp">(@{sign(strMod)})</td></tr>
+					<tr><td class="sl">DEXTERITY</td></tr>
+					<tr><td class="ability">@{dex}</td></tr>
+					<tr><td class="abilmod bp">(@{sign(dexMod)})</td></tr>
+					<tr><td class="sl">CONSTITUTION</td></tr>
+					<tr><td class="ability">@{con}</td></tr>
+					<tr><td class="abilmod bp">(@{sign(conMod)})</td></tr>
+					<tr><td class="sl">INTELLIGENCE</td></tr>
+					<tr><td class="ability">@{int}</td></tr>
+					<tr><td class="abilmod bp">(@{sign(intMod)})</td></tr>
+					<tr><td class="sl">WISDOM</td></tr>
+					<tr><td class="ability">@{wis}</td></tr>
+					<tr><td class="abilmod bp">(@{sign(wisMod)})</td></tr>
+					<tr><td class="sl">CHARISMA</td></tr>
+					<tr><td class="ability">@{cha}</td></tr>
+					<tr><td class="abilmod">(@{sign(chaMod)})</td></tr>
+				</table>
+			</td>
+			<td>
+				<table class="skills thinb mb">
+					<tr><td class="skv">&nbsp;</td><td class="skn"><b>INSPIRATION</b></td></tr>
+				</table>
+				<table class="skills thinb mb">
+					<tr><td class="skv">@{sign(prof)}</td><td class="skn"><b>PROFICIENCY BONUS</b></td></tr>
+				</table>
+				<table class="skills thinb mb">
+					<tr><th colspan="2">SAVING THROWS</th></tr>
+					<tr><td class="skv">@{sign(strSave)}</td><td class="skn">Strength</td></tr>
+					<tr><td class="skv">@{sign(dexSave)}</td><td class="skn">Dexterity</td></tr>
+					<tr><td class="skv">@{sign(conSave)}</td><td class="skn">Constitution</td></tr>
+					<tr><td class="skv">@{sign(intSave)}</td><td class="skn">Intelligence</td></tr>
+					<tr><td class="skv">@{sign(wisSave)}</td><td class="skn">Wisdom</td></tr>
+					<tr><td class="skv">@{sign(chaSave)}</td><td class="skn">Charisma</td></tr>
+				</table>
+				<table class="skills thinb mb">
+					<tr><th colspan="2"><b>SKILLS</th></tr>
+					<tr><td class="skv">@{acr}</td><td class="skn">Acrobatics (Dex)</td></tr>
+					<tr><td class="skv">@{ani}</td><td class="skn">Animal Handling (Wis)</tr></td>
+					<tr><td class="skv">@{arc}</td><td class="skn">Arcana (Int)</td></tr>
+					<tr><td class="skv">@{ath}</td><td class="skn">Athletics (Str)</td></tr>
+					<tr><td class="skv">@{dec}</td><td class="skn">Deception (Cha)</td></tr>
+					<tr><td class="skv">@{his}</td><td class="skn">History (Int)</td></tr>
+					<tr><td class="skv">@{ins}</td><td class="skn">Insight (Wis)</td></tr>
+					<tr><td class="skv">@{itm}</td><td class="skn">Intimidation (Cha)</td></tr>
+					<tr><td class="skv">@{inv}</td><td class="skn">Investigation (Int)</td></tr>
+					<tr><td class="skv">@{med}</td><td class="skn">Medicine (Wis)</td></tr>
+					<tr><td class="skv">@{nat}</td><td class="skn">Nature (Int)</td></tr>
+					<tr><td class="skv">@{prc}</td><td class="skn">Perception (Wis)</td></tr>
+					<tr><td class="skv">@{prf}</td><td class="skn">Performance (Cha)</td></tr>
+					<tr><td class="skv">@{rel}</td><td class="skn">Religion (Int)</td></tr>
+					<tr><td class="skv">@{slt}</td><td class="skn">Sleight of Hand (Dex)</td></tr>
+					<tr><td class="skv">@{ste}</td><td class="skn">Stealth (Dex)</td></tr>
+					<tr><td class="skv">@{sur}</td><td class="skn">Survival (Wis)</td></tr>
+				</table>
+			</td>
+			</tr>
+			<tr>
+				<td class="thinb thirdwidth" colspan="2">
+					<table width="100%">
+						<tr><td class="skv">@{10+wisMod}</td><td class="skn"><b>PASSIVE PERCEPTION (WIS)</b></td></tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">OTHER PROFICIENCIES & LANGUAGES</th>
+			</tr>
+			<tr>
+				<td class="thirdwidth" colspan="2">
+					@@if{languages}
+					<p class="x"><b>Languages</b> @{languages}</p>
+					@@end
+					@@if{weaponProficiencies}
+					<p class="x"><b>Weapon Proficiencies</b> @{weaponProficiencies}</p>
+					@@end
+					@@if{armorProficiencies}
+					<p class="x"><b>Armor Proficiencies</b> @{armorProficiencies}</p>
+					@@end
+					@@if{toolProficiencies}
+					<p class="x"><b>Tool Proficiencies</b> @{toolProficiencies}</p>
+					@@end
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td class="thirdwidth">
+		<table>
+			<tr>
+				<td class="thinb" style="width: 34%;">
+					<p class="ability">@{ac}</p>
+					<p class="skl">ARMOR&nbsp;CLASS</p>
+				</td>
+				<td class="thinb" style="width: 33%;">
+					<p class="ability">@{sign(initiative)}</p>
+					<p class="skl">INITIATIVE</p>
+				</td>
+				<td class="thinb" style="width: 33%;">
+					<p class="ability">@{speed}</p>
+					<p class="skl">SPEED</p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" class="thinb mt mb" style="width: 100%; margin-top: 4pt;">
+					<p class="skn">Hit Point Maximum: @{hp}</p>
+					<p class="ability" id="hp" onclick="edit(this.id)">&nbsp;</p>
+					<p class="skl">CURRENT HIT POINTS</p>
+					<p class="ability" id="thp" onclick="edit(this.id)">&nbsp;</p>
+					<p class="skl">TEMPORARY HIT POINTS</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="thinb mt mb" style="width: 1.5in;" colspan="3">
+					<table width="100%">
+					<tr>
+						<th colspan="3">HIT DICE</td>
+					</tr>
+					@@foreach{class}
+						<tr>
+							<td class="skill" style="width: 50%">@{item.name} (@{item.system.hitDice})</td><td style="width: 25%">@{item.system.levels}</td><td class="hd" id="@{item.name}hd" onclick="edit(this.id)"></td>
+						</tr>
+					@@endforeach
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="thinb mb mt" style="width: 100%;" colspan="3">
+					<table width="100%">
+					<tr><th colspan="2">DEATH SAVES</td></tr>
+					<tr><td class="skl" style="text-align: right; width: 50%">SUCCESSES</td><td class="saves"><span id="s1" onclick="chk(this.id)">&#x25EF;</span>&nbsp;<span id="s2" onclick="chk(this.id)">&#x25EF;</span>&nbsp;<span id="s3" onclick="chk(this.id)">&#x25EF;</span></tr>
+					<tr><td class="skl" style="text-align: right; width: 50%">FAILURES</td><td class="saves"><span id="f1" onclick="chk(this.id)">&#x25EF;</span>&nbsp;<span id="f2" onclick="chk(this.id)">&#x25EF;</span>&nbsp;<span id="f3" onclick="chk(this.id)">&#x25EF;</span></td></tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="3">ATTACKS & EQUIPMENT</th>
+			</tr>
+			<tr>
+				<td style="width: 2.5in; height: 99%;" colspan="3">
+				@@foreach{weapon}
+					<p class="x"><b>@{itemname}</b> @{itemstats}</p>
+					@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+						<p class="desc">@{itemdetails}</p>
+					@@endif
+				@@endforeach
+				@@foreach{spell}
+					@@if{item.system.actionType = 'rsak' || item.system.actionType = 'msak' || item.system.actionType = 'save' && damage}
+					<p class="x"><b>@{itemname}</b> @{itemstats}</p>
+					@@endif
+				@@endforeach
+				@@foreach{consumable}
+					<p class="x"><b>@{itemname}</b> @{itemstats}</p>
+					@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+						<p class="desc">@{itemdetails}</p>
+					@@endif
+				@@endforeach
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td class="thirdwidth">
+		<table width="100%">
+			@@call{detail(APPEARANCE, appearance)}
+			@@call{detail(PERSONALITY TRAITS, trait)}
+			@@call{detail(IDEALS, ideal)}
+			@@call{detail(BONDS, bond)}
+			@@call{detail(FLAWS, flaw)}
+			<tr>
+				<th>FEATURES & TRAITS</th>
+			</tr>
+			<tr>
+				<td style="height: 99%">
+				@@call{trait(Damage Resistances, damageResistances)}
+				@@call{trait(Damage Immunities, damageImmunities)}
+				@@call{trait(Damage Vulnerabilities, damageVulnerabilities)}
+				@@call{trait(Condition Immunities, conditionImmunities)}
+				@@foreach{background}
+					<p class="x"><b>@{itemname}</b></p>
+					@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+						<p class="desc">@{itemdetails}</p>
+					@@endif
+				@@endforeach
+				@@foreach{subclass}
+					<p class="x"><b>@{itemname}</b> @{itemstats}</p>
+				@@endforeach
+				@@foreach{feat}
+					<p class="x"><b>@{itemname}</b> @{itemstats}</p>
+					@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+						<p class="desc">@{itemdetails}</p>
+					@@endif
+				@@endforeach
+				</td>
+			</tr>
+		</table>
+	</td>
+	</tr>
+</table>
+
+@@macro{itemList(TYPE)}
+	@@foreach{TYPE}
+		<p class="x"><b>@{itemname}</b> @{itemstats}</p>
+		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
+			<p>@{itemdetails}</p>
+		@@endif
+	@@endforeach
+@@endmacro
+@@macro{coin(COIN)}
+@@if{system.currency.COIN}@{cdelim}@{system.currency.COIN}COIN@@define{cdelim=', '}@@endif
+@@endmacro
+
+@@define{stuff=count(loot) > 0 || count(tool) > 0 || count(backpack) > 0 || count(equipment) || system.currency.pp || system.currency.gp || system.currency.ep || system.currency.sp || system.currency.cp}
+@@if{stuff || system.details.biography.value}
+<div style="break-before: page">
+@@if{system.details.biography.value}
+<h2>Biography</h2>
+<div class="spells">
+<p>@{system.details.biography.value}</p>
+</div>
+@@endif
+@@if{stuff}
+<h2>Currency, Equipment, Treasure, Tools</h2>
+<div class="spells">
+<p class="x"><b>Coins</b> @@define{cdelim=''}@@call{coin(pp)}@@call{coin(gp)}@@call{coin(ep)}@@call{coin(sp)}@@call{coin(cp)}</p>
+@@call{itemList(backpack)}
+@@call{itemList(equipment)}
+@@call{itemList(loot)}
+@@call{itemList(tool)}
+</div>
+@@endif
+</div>
+@@endif
+
+@@if{count('spell') > 0 && showSpellbook}
+<div class="lev name fullwidth" style="padding-bottom: 4pt; padding-top: 4pt; break-before: page">Spells for @{name}</div>
+@@if{intrsak}
+<p class="sc">Intelligence ranged spell attack @{intrsak}, Intelligence melee spell attack @{intmsak}, <b>Intelligence Spell DC</b> @{intspelldc}</p>
+@@endif
+@@if{wisrsak}
+<p class="sc">Wisdom ranged spell attack @{wisrsak}, Wisdom melee spell attack @{wismsak}, <b>Wisdom Spell DC</b> @{wisspelldc}</p>
+@@endif
+@@if{charsak}
+<p class="sc">Charisma ranged spell attack @{charsak}, Charisma melee spell attack @{chamsak}, <b>Charisma Spell DC</b> @{chaspelldc}</p>
+@@endif
+<div class="spells">
+	@@for{level = 0; level < 10; level = level + 1}
+		@@define{showhdr=1}
+		@@define{nslots = *('system.spells.spell' + level + '.max')}
+		@@if{level=0}
+		<div class="lev" style="break-after: avoid">Cantrips</div>
+		@@endif
+		@@foreach{spell}
+			@@if{item.system.level = level}
+			@@if{level>0 && showhdr}
+			<div style="break-after: avoid"><span class="lev slot">@{level}</span>
+				@@if{nslots>0}<span class="slot">@{nslots} slot@{nslots!=1?'s':''}</span><span class="slot"> </span>@@endif</div>
+			@@endif
+			@@define{prepared=''}
+			@@if{item.system.preparation.mode = 'prepared' && item.system.preparation.prepared}
+				@@define{prepared='•'}
+			@@endif
+			<p class="spellhdr">@{itemname} @{prepared}</p>
+			<p class="italic">@{spellLevel}</p>
+			<p class="spellfirst"><b>Casting Time:</b> @{spellCastTime}</p>
+			<p class="spell"><b>Range:</b> @{spellRange}</p>
+			<p class="spell"><b>Components:</b> @{spellComponents}</p>
+			<p class="spell"><b>Duration:</b> @{spellDuration}</p>
+			@@if{showDetails}
+			<p class="desc">@{itemdetails}</p>
+			@@endif
+			@@define{showhdr=0}
+			@@endif
+		@@endforeach
+	@@endfor
+</div>
+@@endif
+
+</form>
+
+</body>
+
+</html>
