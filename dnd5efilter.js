@@ -672,9 +672,23 @@ export class DnD5eObject extends SystemObject {
 				range = `range ${w.system.range.value} ${w.system.range.units}`;
 			break;
 		}
-		
-		let prof = this.defs['prof'];
-		let tohit = Number(w.system.attackBonus) + mod + (w.system.proficient ? prof : 0);
+
+		function proficiencyMultiplier(actor, sys) {
+			if ( Number.isFinite(sys.proficient) )
+				return sys.proficient;
+			if ( actor.type === "npc" ) return 1; // NPCs are always considered proficient with any weapon in their stat block.
+			const config = CONFIG.DND5E.weaponProficienciesMap;
+			const itemProf = config[sys.weaponType];
+			const actorProfs = actor.system.traits?.weaponProf?.value ?? new Set();
+			const natural = sys.weaponType === "natural";
+			const improvised = (sys.weaponType === "improv") && !!actor.getFlag("dnd5e", "tavernBrawlerFeat");
+			const isProficient = natural || improvised || actorProfs.has(itemProf) || actorProfs.has(sys.baseItem);
+			return Number(isProficient);
+		}
+
+		let prof = proficiencyMultiplier(a, w.system) ? this.defs['prof'] : 0;
+			
+		let tohit = Number(w.system.attackBonus) + mod + prof;
 		weapdeets += sign(this.filter, tohit) + ` to hit`;
 		if (range)
 			weapdeets += `, ${range}`;
