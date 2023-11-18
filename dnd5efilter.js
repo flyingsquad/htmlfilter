@@ -262,17 +262,23 @@ export class DnD5eObject extends SystemObject {
 		this.defs['acdetails'] = items;
 	}
 
-	_setTraits(title, traits) {
+	_getLabel(keyLabel, key) {
+		return dnd5e.documents.Trait.keyLabel(keyLabel, key);
+	}
+
+	_setTraits(title, keyLabel, traits) {
 		if (traits == undefined)
 			return;
-		let list = '';
-		for (let t in traits.selected) {
-			let name = traits.selected[t];
+		let list = [];
+		for (let t of traits.value) {
+			let name = this._getLabel(keyLabel, t);
 			if (name == undefined)
 				name = t;
-			list = cat(list, ', ', name);
+			list.push(name);
 		}
-		this.defs[title] = list;
+		if (traits.custom)
+			list = list.concat(traits.custom.split(/ *; */));
+		this.defs[title] = list.join(', ');
 	}
 	
 	_setSenses(senses) {
@@ -399,15 +405,21 @@ export class DnD5eObject extends SystemObject {
 		// directly from the actor tab. It can only run off the open character sheet.
 
 		this._setSenses(a.system.attributes.senses);
-		this._setTraits('languages', a.system.traits.languages);
-		this._setTraits('damageResistances', a.system.traits.dr);
-		this._setTraits('damageImmunities', a.system.traits.di);
-		this._setTraits('damageVulnerabilities', a.system.traits.dv);
-		this._setTraits('conditionImmunities', a.system.traits.ci);
+		this._setTraits('languages', 'languages', a.system.traits.languages);
+		this._setTraits('damageResistances', 'dr', a.system.traits.dr);
+		this._setTraits('damageImmunities', 'di', a.system.traits.di);
+		this._setTraits('damageVulnerabilities', 'dv', a.system.traits.dv);
+		this._setTraits('conditionImmunities', 'ci', a.system.traits.ci);
 
-		this._setTraits('weaponProficiencies', a.system.traits.weaponProf);
-		this._setTraits('armorProficiencies', a.system.traits.armorProf);
-		this._setTraits('toolProficiencies', a.system.traits.toolProf);
+		this._setTraits('weaponProficiencies', "weapon", a.system.traits.weaponProf);
+		this._setTraits('armorProficiencies', "armor", a.system.traits.armorProf);
+
+		let tools = [];
+		for (let t in a.system.tools)
+			tools.push(this._getLabel('tool', t));
+		if (tools.length > 0)
+			this.defs['toolProficiencies'] = tools.join(', ');
+
 		if (spellAbilities.length > 0)
 			 this._setSpellDC(a, spellAbilities);
 		 
