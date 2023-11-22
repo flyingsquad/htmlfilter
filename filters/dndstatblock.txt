@@ -546,11 +546,29 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 		<p class="exdent">@{spellcasting}</p>
 	@@end
 	@@define{spells = ''}
+	@@define{pactmagic = ''}
+	@@define{innatespells = ''}
+	@@define{atwillspells = ''}
 	@@foreach{spell}
 		@@if{item.system.level = 0}
 			@@define{spells = concat(spells, ', ', itemname)}
 		@@endif
+		@@if{item.system.preparation.mode = 'atwill'}
+			@@define{atwillspells = concat(atwillspells, ', ', itemname)}
+		@@endif
+		@@if{item.system.preparation.mode = 'innate'}
+			@@define{innatespells = concat(innatespells, ', ', itemname)}
+		@@endif
+		@@if{item.system.preparation.mode = 'pact'}
+			@@define{pactmagic = concat(pactmagic, ', ', itemname)}
+		@@endif
 	@@endforeach
+	@@if{atwillspells}
+		<p><b>At-Will:</b> @{atwillspells}</p>
+	@@endif
+	@@if{innatespells}
+		<p><b>Innate Spellcasting:</b> @{innatespells}</p>
+	@@endif
 	@@if{spells}
 		<p><b>Cantrip:</b> @{spells}</p>
 	@@endif
@@ -560,9 +578,9 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 			<p><b>Level @{slot}</b> (@{nslots}):
 			@@define{spells = ''}
 			@@foreach{spell}
-				@@if{item.system.level = slot}
+				@@if{item.system.level = slot && (item.system.preparation.mode = 'prepared' || item.system.preparation.mode = 'always')}
 					@@define{prepared=''}
-					@@if{item.system.preparation.mode = 'prepared' && item.system.preparation.prepared || item.system.preparation.mode = 'always' }
+					@@if{item.system.preparation.prepared || item.system.preparation.mode = 'always'}
 						@@define{prepared='•'}
 					@@endif
 					@@define{spells = concat(spells, ', ', prepared + itemname)}
@@ -572,6 +590,9 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 			</p>
 		@@endif
 	@@endfor
+	@@if{pactmagic}
+		<p><b>Pact Magic:</b> @{pactmagic}</p>
+	@@endif
 @@endif
 
 @@if{count('spell') > 0 && showSpellbook}
