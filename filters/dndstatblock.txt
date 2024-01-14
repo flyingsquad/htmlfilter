@@ -451,6 +451,15 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 	@@endforeach
 @@end
 
+@@macro{curr(COIN)}
+@@if{system.currency.COIN}@{cdelim}@{system.currency.COIN}COIN@@define{cdelim=', '}@@endif
+@@endmacro
+@@if{system.currency.pp || system.currency.gp || system.currency.ep || system.currency.sp || system.currency.cp}
+<h2>Currency</h2>
+@@define{cdelim=''}
+<p>@@call{curr(pp)}@@call{curr(gp)}@@call{curr(ep)}@@call{curr(sp)}@@call{curr(cp)}</p>
+@@endif
+
 @@if{count('equipment') > 0}
 	<h2>Equipment</h2>
 	@@foreach{equipment}
