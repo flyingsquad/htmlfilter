@@ -263,7 +263,7 @@ export class DnD5eObject extends SystemObject {
 	}
 
 	_getLabel(keyLabel, key) {
-		return dnd5e.documents.Trait.keyLabel(keyLabel, key);
+		return dnd5e.documents.Trait.keyLabel(key, {keyLabel});
 	}
 
 	_setTraits(title, keyLabel, traits) {
@@ -314,7 +314,10 @@ export class DnD5eObject extends SystemObject {
 
 		this.defs['name'] = a.name;
 		this.defs['actorType'] = a.type;
-		this.defs['size'] = CONFIG.DND5E.actorSizes[a.system?.traits?.size];
+		if (typeof CONFIG.DND5E.actorSizes[a.system?.traits?.size] === 'object')
+			this.defs['size'] = CONFIG.DND5E.actorSizes[a.system?.traits?.size].label;
+		else
+			this.defs['size'] = CONFIG.DND5E.actorSizes[a.system?.traits?.size];
 		if (a.type == 'character')
 			this.charLevel = a.system.details.level;
 		else
@@ -713,7 +716,7 @@ export class DnD5eObject extends SystemObject {
 		if (damage)
 			weapdeets += `. Hit: ${damage}`;
 		if (w.system?.save.ability) {
-			weapdeets += `, DC ${w.system.save.dc} ${CONFIG.DND5E.abilityAbbreviations[w.system.save.ability]} saving throw`;
+			weapdeets += `, DC ${w.system.save.dc} ${CONFIG.DND5E.abilities[w.system.save.ability].label} saving throw`;
 		}
 		let props = '';
 		if (w.system.properties.fin) props = cat(props, ', ', 'Finesse');
