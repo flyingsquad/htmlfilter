@@ -923,7 +923,7 @@ Hooks.on("renderActorDirectory", (app, html, data) => {
 					a.prepareBaseData();
 					a.prepareData();
 					a.prepareDerivedData();
-					a.prepareEmbeddedDocuments();
+					//a.prepareEmbeddedDocuments();
 					f.filter(a);
 				}
 			} catch (msg) {
