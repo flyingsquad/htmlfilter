@@ -157,7 +157,7 @@ export class pf2eObject extends SystemObject {
 
 		this.defs['hp'] = a.system.attributes.hp.value;
 		this.defs['speed'] = a.system.attributes.speed.value;
-		this.defs['alignment'] = a.system.details.alignment.value;
+		this.defs['alignment'] = a.system.details.alignment;
 		this.defs['level'] = a.system.details.level.value;
 			
 	}
