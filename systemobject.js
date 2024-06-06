@@ -332,7 +332,7 @@ export function stripjunk(filter, str) {
 			for (const owner in owners) {
 				if (owner != 'default' && owners[owner] == 3) {
 					let user = game.users.get(owner);
-					if (user && user.name != 'Gamemaster') {
+					if (user && (user.role == 1 || user.role == 2)) {
 						players = cat(players, ', ', user.name);
 					}
 				}

@@ -460,10 +460,13 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 <p>@@call{curr(pp)}@@call{curr(gp)}@@call{curr(ep)}@@call{curr(sp)}@@call{curr(cp)}</p>
 @@endif
 
+@@macro{container()}
+@@if{container}&nbsp;(in @{container})@@endif
+@@endmacro
 @@if{count('equipment') > 0}
 	<h2>Equipment</h2>
 	@@foreach{equipment}
-		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}@@call{container()}</p>
 		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
 			<p class="desc">@{itemdetails}</p>
 		@@end
@@ -472,7 +475,7 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 @@if{count('consumable') > 0}
 	<h2>Consumables</h2>
 	@@foreach{consumable}
-		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}@@call{container()}</p>
 		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
 			<p class="desc">@{itemdetails}</p>
 		@@end
@@ -486,9 +489,9 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 	<p style="margin-left: ${lm}">Coins: @@define{cdelim=''}@@call{coin(pp)}@@call{coin(gp)}@@call{coin(ep)}@@call{coin(sp)}@@call{coin(cp)}</p>
 @@endif
 @@endmacro
-@@if{count('backpack') > 0}
+@@if{count('container') > 0}
 	<h2>Containers</h2>
-	@@foreach{backpack}
+	@@foreach{container}
 		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
 		@@call{currency(.25in)}
 		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
@@ -533,7 +536,7 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 @@if{count('tool') > 0}
 	<h2>Tools</h2>
 	@@foreach{tool}
-		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}@@call{container()}</p>
 		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
 			<p class="desc">@{itemdetails}</p>
 		@@end
@@ -542,7 +545,7 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 @@if{count('loot') > 0}
 	<h2>Treasure</h2>
 	@@foreach{loot}
-		<p class="exdent"><b>@{itemname}</b>. @{itemstats}</p>
+		<p class="exdent"><b>@{itemname}</b>. @{itemstats}@@call{container()}</p>
 		@@if{showDetails && itemdetails && strlength(itemdetails) <= maxDetails}
 			<p class="desc">@{itemdetails}</p>
 		@@end

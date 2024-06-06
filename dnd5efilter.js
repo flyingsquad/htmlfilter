@@ -71,6 +71,10 @@ export class DnD5eObject extends SystemObject {
 			return stripjunk(this.filter, this.curItem.system?.description?.value);
 		case 'damage':
 			return this._itemDamage(this.curItem);
+		case 'container':
+			if (this.curItem?.container)
+				return this.curItem.container.name;
+			break;
 		case 'spellLevel':
 			if (this.curItem == null || this.curItem.type != 'spell')
 				return 'spellLevel';
@@ -263,7 +267,7 @@ export class DnD5eObject extends SystemObject {
 	}
 
 	_getLabel(keyLabel, key) {
-		return dnd5e.documents.Trait.keyLabel(key, {keyLabel});
+		return dnd5e.documents.Trait.keyLabel(keyLabel + ':' + key, {});
 	}
 
 	_setTraits(title, keyLabel, traits) {
@@ -666,11 +670,11 @@ export class DnD5eObject extends SystemObject {
 		case 'mwak':
 		case '':
 			weapdeets = cat(weapdeets, ', ', 'Melee: ');
-			if (w.system.properties.fin)
+			if (w.system.properties.has("fin"))
 				mod = Math.max(a.system.abilities.str.mod, a.system.abilities.dex.mod);
 			else
 				mod = a.system.abilities.str.mod;
-			if (w.system.properties.thr) {
+			if (w.system.properties.has("thr")) {
 				if (w.system.range.long)
 					range = `reach 5 ft or range ${w.system.range.value}/${w.system.range.long} ${w.system.range.units}`;
 				else
@@ -689,8 +693,8 @@ export class DnD5eObject extends SystemObject {
 		}
 
 		function proficiencyMultiplier(actor, sys) {
-			if ( Number.isFinite(sys.proficient) )
-				return sys.proficient;
+			if ( Number.isFinite(sys.prof.multiplier) )
+				return sys.prof.multiplier;
 			if ( actor.type === "npc" ) return 1; // NPCs are always considered proficient with any weapon in their stat block.
 			const config = CONFIG.DND5E.weaponProficienciesMap;
 			const itemProf = config[sys.weaponType];
@@ -703,7 +707,7 @@ export class DnD5eObject extends SystemObject {
 
 		let prof = proficiencyMultiplier(a, w.system) ? this.defs['prof'] : 0;
 			
-		let tohit = Number(w.system.attackBonus) + mod + prof;
+		let tohit = Number(w.system.attack?.bonus) + mod + prof;
 		weapdeets += sign(this.filter, tohit) + ` to hit`;
 		if (range)
 			weapdeets += `, ${range}`;
