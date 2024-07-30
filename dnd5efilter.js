@@ -79,7 +79,13 @@ export class DnD5eObject extends SystemObject {
 			if (this.curItem == null || this.curItem.type != 'spell')
 				return 'spellLevel';
 			let school = CONFIG.DND5E.spellSchools[this.curItem.system.school];
-			let ritual = this.curItem.system.components.ritual ? ' (ritual)' : '';
+			if (school.label)
+				school = school.label;
+			let ritual;
+			if (this.curItem.system.components)
+				ritual = this.curItem.system.components.ritual ? ' (ritual)' : '';
+			else
+				ritual = this.curItem.system.properties.has('ritual') ? ' (ritual)' : '';
 			if (this.curItem.system.level == 0)
 				return `${school} cantrip${ritual}`;
 			return `${CONFIG.DND5E.spellLevels[this.curItem.system.level]} ${school}${ritual}`;
@@ -114,12 +120,21 @@ export class DnD5eObject extends SystemObject {
 			return range;
 		case 'spellComponents':
 			let comp = "";
-			if (this.curItem.system.components.vocal)
-				comp = cat(comp, ', ', 'V');
-			if (this.curItem.system.components.somatic)
-				comp = cat(comp, ', ', 'S');
-			if (this.curItem.system.components.material)
-				comp = cat(comp, ', ', 'M');
+			if (this.curItem.system.components) {
+				if (this.curItem.system.components.vocal)
+					comp = cat(comp, ', ', 'V');
+				if (this.curItem.system.components.somatic)
+					comp = cat(comp, ', ', 'S');
+				if (this.curItem.system.components.material)
+					comp = cat(comp, ', ', 'M');
+			} else {
+				if (this.curItem.system.properties.has('vocal'))
+					comp = cat(comp, ', ', 'V');
+				if (this.curItem.system.properties.has('somatic'))
+					comp = cat(comp, ', ', 'S');
+				if (this.curItem.system.properties.has('materials'))
+					comp = cat(comp, ', ', 'M');
+			}
 			if (this.curItem.system.materials.value)
 				comp += ` (${this.curItem.system.materials.value})`;
 			return comp;
@@ -134,10 +149,17 @@ export class DnD5eObject extends SystemObject {
 				break;
 			default:
 				let plural = this.curItem.system.duration.value != 1 ? 's' : '';
-				if (this.curItem.system.components.concentration)
-					dur = `Concentration, up to ${this.curItem.system.duration.value} ${this.curItem.system.duration.units}${plural}`;
-				else
-					dur = `${this.curItem.system.duration.value} ${this.curItem.system.duration.units}${plural}`;
+				if (this.curItem.system.components) {
+					if (this.curItem.system.components.concentration)
+						dur = `Concentration, up to ${this.curItem.system.duration.value} ${this.curItem.system.duration.units}${plural}`;
+					else
+						dur = `${this.curItem.system.duration.value} ${this.curItem.system.duration.units}${plural}`;
+				} else {
+					if (this.curItem.system.properties.has("concentration"))
+						dur = `Concentration, up to ${this.curItem.system.duration.value} ${this.curItem.system.duration.units}${plural}`;
+					else
+						dur = `${this.curItem.system.duration.value} ${this.curItem.system.duration.units}${plural}`;
+				}
 			}
 			return dur;
 		default:
@@ -359,7 +381,7 @@ export class DnD5eObject extends SystemObject {
 			}
 			this.defs['charLevel'] = charLevel;
 			this.defs['classList'] = classList;
-			this.defs['xp'] = getProperty(a, 'system.details.xp.value');
+			this.defs['xp'] = foundry.utils.getProperty(a, 'system.details.xp.value');
 			this.defs['nextLevelXP'] = a.system.details.xp.max;
 			this.defs['race'] = a.system.details.race;
 			this.defs['spellAbilities'] = spellAbilities;

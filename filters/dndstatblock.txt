@@ -387,6 +387,30 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 @@if{system.details.appearance}
 <p class='indent'><b>Appearance:</b> @{system.details.appearance}</p>
 @@end
+@@if{system.details.eyes}
+<p class='indent'><b>Eyes:</b> @{system.details.eyes}</p>
+@@endif
+@@if{system.details.height}
+<p class='indent'><b>Height:</b> @{system.details.height}</p>
+@@endif
+@@if{system.details.faith}
+<p class='indent'><b>Faith:</b> @{system.details.faith}</p>
+@@endif
+@@if{system.details.hair}
+<p class='indent'><b>Hair:</b> @{system.details.hair}</p>
+@@endif
+@@if{system.details.weight}
+<p class='indent'><b>Weight:</b> @{system.details.weight}</p>
+@@endif
+@@if{system.details.gender}
+<p class='indent'><b>Gender:</b> @{system.details.gender}</p>
+@@endif
+@@if{system.details.skin}
+<p class='indent'><b>Skin:</b> @{system.details.skin}</p>
+@@endif
+@@if{system.details.age}
+<p class='indent'><b>Age:</b> @{system.details.age}</p>
+@@endif
 @@if{system.details.trait}
 <p class='indent'><b>Personality Traits:</b> @{system.details.trait}</p>
 @@end
@@ -420,9 +444,9 @@ Int @{sign(intSave)}, Wis @{sign(wisSave)}, Cha @{sign(chaSave)}</p>
 		@@endif
 	@@endforeach
 @@endif
-
+@@if{actorType = 'character'}
 <h2>Class and Subclass</h2>
-
+@@end
 @@if{count('class') > 0}
 	@@foreach{class}
 		<h3>@{itemname} @{item.system.levels}</h3>
