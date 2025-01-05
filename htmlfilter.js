@@ -920,9 +920,9 @@ Hooks.on("renderActorDirectory", (app, html, data) => {
 
 				for (let token of tokens) {
 					let a = token.actor;
-					a.prepareBaseData();
-					a.prepareData();
-					a.prepareDerivedData();
+					//a.prepareBaseData();
+					//a.prepareData();
+					//a.prepareDerivedData();
 					//a.prepareEmbeddedDocuments();
 					f.filter(a);
 				}
@@ -1000,7 +1000,7 @@ Hooks.once('init', async function () {
 function insertActorHeaderButtons(actorSheet, buttons) {
   let actor = actorSheet.object;
   buttons.unshift({
-    label: "Print Character Sheet",
+    label: "Print",
     icon: "fas fa-file-text",
     class: "html-filter-button",
     onclick: async () => {

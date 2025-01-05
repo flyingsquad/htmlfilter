@@ -77,6 +77,17 @@ function initcap(sysObj, txt) {
 	return txt.charAt(0).toUpperCase() + txt.slice(1);
 }
 
+export function replaceAll() {
+	if (arguments.length != 4)
+		return "(Error: replaceAll arg count)";
+	let sysObj = arguments[0];
+	let string = arguments[1];
+	let pattern = arguments[2];
+	let value = arguments[3];
+	
+	return string.replaceAll(pattern, value);
+}
+
 function resolveUUID(a, uuid) {
 	let arr = uuid.split('.');
 	if (arr.length == 4) {
@@ -263,11 +274,25 @@ export function stripjunk(filter, str) {
 					this._deleteIgnored(arr);
 					// Sort the array by label or by name, whichever
 					// field exists.
+				
 					if (typeof arr[0] === 'object') {
-						if ('label' in arr[0])
-							arr.sort((a, b) => (a.label > b.label) ? 1 : -1)
-						else if ('name' in arr[0])
-							arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
+						let sortKey = this.defs['sortKey'];
+						let sortOrder = this.defs['sortOrder'] == 'descending';
+						if (sortKey) {
+							if (sortKey in arr[0]) {
+								if (isNaN(arr[0][sortKey])) {
+									if (sortOrder)
+										arr.sort((a, b) => (a[sortKey] < b[sortKey]) ? 1 : -1)
+									else
+										arr.sort((a, b) => (a[sortKey] > b[sortKey]) ? 1 : -1)
+								} else {
+									if (sortOrder)
+										arr.sort((a, b) => (Number(a[sortKey]) < Number(b[sortKey])) ? 1 : -1)
+									else
+										arr.sort((a, b) => (Number(a[sortKey]) > Number(b[sortKey])) ? 1 : -1)
+								}
+							}
+						}
 					}
 				}
 				return arr;
@@ -284,10 +309,21 @@ export function stripjunk(filter, str) {
 
 		if (items && items.length > 0) {
 			this._deleteIgnored(items);
-			if ('label' in items[0])
-				items.sort((a, b) => (a.label > b.label) ? 1 : -1)
-			else if ('name' in items[0])
-				items.sort((a, b) => (a.name > b.name) ? 1 : -1)
+			let sortKey = this.defs['sortKey'];
+			let sortOrder = this.defs['sortOrder'] == 'descending';
+			if (sortKey) {
+				if (isNaN(items[0]['sortKey'])) {
+					if (sortOrder)
+						items.sort((a, b) => (a[sortKey] < b[sortKey]) ? 1 : -1);
+					else
+						items.sort((a, b) => (a[sortKey] > b[sortKey]) ? 1 : -1);
+				} else {
+					if (sortOrder)
+						items.sort((a, b) => (Number(a[sortKey]) < Number(b[sortKey])) ? 1 : -1);
+					else
+						items.sort((a, b) => (Number(a[sortKey]) > Number(b[sortKey])) ? 1 : -1);
+				}
+			}
 		}
 		return items;
 	}
@@ -317,6 +353,7 @@ export function stripjunk(filter, str) {
 		this.filter.functions['initcap'] = initcap;
 		this.filter.functions['concat'] = concat;
 		this.filter.functions['striphtml'] = striphtml;
+		this.filter.functions['replaceAll'] = replaceAll;
 
 		this.defs = [];
 		this.defs['title'] = this.title;

@@ -1,0 +1,428 @@
+<html>
+<html>
+
+<head>
+<title>@{title}</title>
+
+<style>
+	p {
+		font-family: "Bookman Old Style", serif;
+		font-size: 12pt;
+		font-weight: normal;
+		margin-top: 0;
+		margin-bottom: 0;
+		text-align: justify;
+		text-indent: .1in;
+	}
+	
+	.x {
+		text-indent: 0;
+	}
+	
+	.keepnext {
+		page-break-after: avoid;
+	}
+	
+	just {
+		text-align: justify;
+	}
+
+	div.twocol {
+		column-count: 2;
+		column-gap: 0.25in;
+		margin-top: 0.25in;
+	}
+
+	td {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 10pt;
+		font-weight: normal;
+		vertical-align: top;
+	}
+	tr {
+		vertical-align: top;
+	}
+	
+	.saves {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	.label {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 7pt;
+		width: 20%;
+		vertical-align: top;
+	}
+	
+	p.skill .skill .skv .skn {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-align: left;
+	}
+
+	p.spellhdr {
+		margin-top: .10in;
+		margin-bottom: 0in;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 12pt;
+		font-weight: bold;
+		font-variant: small-caps;
+		color: darkred;
+		text-indent: 0in;
+		margin-left: 0in;
+		break-after: avoid;
+	}
+
+	p.spell {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+		break-after: avoid;
+	}
+
+	p.spellfirst {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 10pt;
+		margin-top: 0.05in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+		break-after: avoid;
+	}
+
+
+	p.italic {
+		font-family: "Times New Roman", "Times", serif;
+		font-style: italic;
+		font-size: 10pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		text-indent: -.25in;
+		margin-left: .25in;
+		break-after: avoid;
+	}
+
+	h2 {
+		font-family: "Algerian", serif;
+		font-size: 16pt;
+		font-weight: normal;
+		margin-bottom: 0;
+		margin-top: 10pt;
+		page-break-after: avoid;
+	}
+
+	h3 {
+		font-family: "Algerian", serif;
+		font-size: 14pt;
+		font-weight: normal;
+		margin-bottom: 0;
+		margin-top: 10pt;
+		page-break-after: avoid;
+	}
+
+	th {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	.skills {
+		width: 2in;
+	}
+	.skv {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-align: center;
+		width: 20pt;
+	}
+	.skl {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		text-align: center;
+		margin-top: .1in;
+		text-indent: 0;
+	}
+	.skn {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 10pt;
+		width: 80%;
+	}
+	.skp {
+		font-family: "Arial", "Helvetica", sans-serif;
+		font-size: 10pt;
+		width: 10pt;
+	}
+
+	.sl {
+		font-family: "Arial Narrow", "Helvetica", sans-serif;
+		font-size: 7pt;
+		text-align: center;
+	}
+	
+	.name {
+		font-family: "Georgia", "Garamond", "Times New Roman", "Times", serif;
+		font-size: 12pt;
+		font-weight: bold;
+		width: 150pt;
+	}
+	.img {
+	}
+	
+	table {
+		border: 0pt;
+	}
+	
+	.thinb {
+		border: gray 1pt solid;
+		border-radius: 6px;
+		padding: 2pt;
+	}
+	
+	.tl {
+		border-top: gray 1pt solid;
+	}
+	
+	.bl {
+		border-left: gray 1pt solid;
+	}
+	.br {
+		border-right: gray 1pt solid;
+	}
+	.bb {
+		border-bottom: gray 1pt solid;
+	}
+	
+	.hd {
+		text-align: center;
+		border-bottom: gray 1pt solid;
+		width: 25%;
+	}
+	
+	.bp {
+		padding-bottom: .3in;
+	}
+	
+	.mb {
+		margin-bottom: 4pt;
+	}
+	
+	.mt {
+		margin-top: 4pt;
+	}
+	
+	.ability {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 18pt;
+		text-align: center;
+		text-indent: 0;
+	}
+
+	.abilmod {
+		font-family: "Times New Roman", "Times", serif;
+		font-size: 12pt;
+		text-align: center;
+	}
+	
+	.vab {
+		vertical-align: bottom;
+	}
+
+	.ci {
+		width: 40%;
+	}
+
+	.table {
+		display: table;
+		width: 8.5in;
+	}
+	.row {
+		display: table-row;
+	}
+	.cell {
+		display: table-cell;
+	}
+	.col {
+		display: table-column;
+	}
+
+	.fullwidth {
+		width: 8in;
+	}
+	.thirdwidth {
+		width: 2.5in;
+	}
+	span.btn {
+		font-family: "Arial", "Helvetica", "sans-serif";
+		width: 8pt;
+		onclick: "chk(this.id)";
+	}
+	
+	.spells {
+		width: 8in;
+		column-count: 3;
+		column-gap: 16pt;
+		column-rule-style: solid;
+		column-rule-width: 1pt;
+		column-rule-color: lightgray;
+	}
+
+	p.desc {
+		font-family: "Bookman Old Style", "Times", serif;
+		font-size: 12pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		margin-left: .25in;
+	}
+
+	p.aspect {
+		font-family: "Bookman Old Style", "Times", serif;
+		font-size: 12pt;
+		margin-top: 0in;
+		margin-bottom: 0in;
+		margin-left: 0in;
+		text-indent: 0in;
+	}
+	
+	.tiny {
+		font-family: "Arial", sans-serif;
+		font-size: 8pt;
+		margin-left: .25;
+		text-transform: uppercase;
+	}
+	
+
+	.lev {
+		font-family: "Arial", "Helvetica", "sans-serif";
+		font-weight: bold;
+		font-size: 14pt;
+		border: black 2pt solid;
+		text-align: center;
+		margin-top: .10in;
+		border-radius: 10px;
+	}
+	
+	.slot {
+		width: 0.5in; 
+		display: inline-block;
+		text-align: center;
+	}
+	
+	.sc {
+		font-weight: bold;
+		font-size: 12pt;
+		margin-top: 2pt;
+		text-indent: 0;
+	}
+	
+</style>
+
+
+</head>
+
+<body>
+<div class="twocol">
+<h2>@{name}</h2>
+@@if{system.details.notes.value && system.details.notes.value != "<p><br /></p>"}
+<p class="desc">@{system.details.notes.value}</p>
+@@endif
+@@if{img && imgheight}
+  <p class="img"><img src="@{img}" alt="@{name}" height="@{imgheight}"></p>
+@@endif
+@@if{system.details.description.value}
+<h3>Description</h3>
+<p class="desc">@{system.details.description.value}</p>
+@@endif
+
+<h3>Refresh: @{system.details.fatePoints.refresh}</h3>
+
+<h3>Aspects</h3>
+@@foreach{system.aspects}
+<p class="aspect"><b>@{item.name}</b>: @{item.value}</p>
+@@if{item.notes}
+  <p class="desc">@{item.notes}</p>
+@@endif
+@@endforeach
+
+@@foreach{system.skills}
+  @@if{item.name = 'Physique'}
+    @@define{Physique=item.rank}
+  @@endif
+  @@if{item.name = 'Will'}
+    @@define{Will=item.rank}
+  @@endif
+@@endforeach
+
+<h3>Tracks</h3>
+@@foreach{system.tracks}
+@@if{item.enabled}
+@@define{boxes=item.boxes}
+@@foreach{item.linked_skills}
+  @@if{item.linked_skill = 'Physique' && Physique >= item.rank}
+    @@define{boxes=boxes+item.boxes}
+  @@endif
+  @@if{item.linked_skill = 'Will' && Will >= item.rank}
+    @@define{boxes=boxes+item.boxes}
+  @@endif
+@@endforeach
+@@if{boxes>0}
+  <p class="aspect keepnext"><b>@{item.name}</b></p>
+  <p class="desc">
+  @@for{i = 1; i <= boxes; i = i + 1}
+    @{i}&#x2B1C;&nbsp;
+  @@endfor
+  </p>
+@@endif
+@@if{boxes=0}
+  @@if{item.enabled}
+    <p class="aspect"><b>@{item.name}</b> @{item.harm_can_absorb}: @{item.aspect.name}</p>
+  @@endif
+@@endif
+@@endif
+@@endforeach
+
+<h3>Stunts</h3>
+
+@@foreach{system.stunts}
+  <p class="aspect"><b>@{item.name}</b>@@if{item.linked_skill != 'None'}&#x0020;(@{item.linked_skill}@@if{item.bonus}&#x0020;+@{item.bonus}@@endif)@@endif@@if{item.refresh_cost}&#x0020;Refresh cost: @{item.refresh_cost}@@endif</p>
+  @@if{item.system.description != ''}
+	<p class="desc">@{item.description}</p>
+  @@endif
+@@endforeach
+
+@@macro{adj(rank)}@@if{rank=0}Mediocre@@endif@@if{rank=1}Average@@endif@@if{rank=2}Fair@@endif@@if{rank=3}Good@@endif@@if{rank=4}Great@@endif@@if{rank=5}Superb@@endif@@if{rank=6}Fantastic@@endif@@if{rank=7}Epic@@endif@@if{rank=8}Legendary@@endif@@endmacro
+<h3>Skills</h3>
+
+<p>
+@@define{cdelim=''}
+@@define{sortKey='rank'}
+@@define{sortOrder='descending'}
+@@foreach{system.skills}
+  @{cdelim}@{item.name}: @@call{adj(item.rank)}&nbsp;(@{sign(item.rank)})@@define{cdelim=', '}  
+@@endforeach
+@@define{sortKey=''}
+@@define{sortOrder=''}
+</p>
+
+@@if{count('extra') > 0}
+<h3>Extras</h3>
+@@foreach{extra}
+<p class="aspect"><b>@{item.name}</b></p>
+@@if{item.system.description != ''}
+  <p class="desc">@{item.system.description}</p>
+@@endif
+@@endforeach
+@@endif
+
+@@if{system.details.biography.value}
+<h3>Biography</h3>
+@{system.details.biography.value}
+@@endif
+</div>
+<hr>
+</body>
+
+</html>
