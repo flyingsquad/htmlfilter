@@ -4,6 +4,7 @@
  
 import {DnD5eObject} from "./dnd5efilter.js";
 import {pf2eObject} from "./pf2efilter.js";
+import {swadeObject} from "./swadefilter.js";
 import {SystemObject} from "./systemobject.js";
 
 const EOX = '';
@@ -843,6 +844,9 @@ export class HTMLFilter {
 			break;
 		case 'pf2e':
 			this.systemObject = new pf2eObject(this, actor, this.title);
+			break;
+		case 'swade':
+			this.systemObject = new swadeObject(this, actor, this.title);
 			break;
 		default:
 			this.systemObject = new SystemObject(this, actor, this.title);

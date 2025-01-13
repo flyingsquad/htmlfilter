@@ -59,10 +59,11 @@
 
 <body>
 <div  class="twocol">
-<h2>@{name}</h2>
+<h2>@{system.wildcard?'[WC] ':''}@{name}</h2>
 @@if{img}
 <p class="center"><img src="@{img}" alt="@{name}" width="@{imgheight}"></p>
 @@endif
+<p><b>CV: @{cv}.</b> @{cvDetails}</p>
 @@macro{showdie(DIE, MOD)}
 d@{DIE}@@if{MOD>0}+@{MOD}@@end@@if{MOD<0}@{MOD}@@end
 @@endmacro
@@ -77,7 +78,7 @@ d@{DIE}@@if{MOD>0}+@{MOD}@@end@@if{MOD<0}@{MOD}@@end
 @@if{archetype}
 <p class="exdent"><b>Archetype:</b> @{archetype}</p>
 @@endif
-@@if{system.details.species.name}<p class="exdent">Ancestry: @{system.details.species.name}</p>@@endif
+@@if{system.details.species.name}<p class="exdent"><b>Ancestry:</b> @{system.details.species.name}</p>@@endif
 @@if{type = 'character' || type = 'npc'}
 @@if{count('ancestry')}
 @@foreach{ancestry}
@@ -89,7 +90,7 @@ d@{DIE}@@if{MOD>0}+@{MOD}@@end@@if{MOD<0}@{MOD}@@end
 	@@endif
 @@endforeach
 @@endif
-@@if{system.stats.size}<p class="exdent"><b>Size:</b> @{system.stats.size}</p>@@endif
+@@if{system.stats.size || system.wounds.max}<p class="exdent"><b>Size:</b> @{system.stats.size}@@if{system.wounds.max>0}, <b>Wounds:</b> @{system.wounds.max}@@endif</p>@@endif
 <p class="exdent">
 <b>Attributes:</b>
 Agility: @@call{showdie(system.attributes.agility.die.sides, system.attributes.agility.die.modifier)},
