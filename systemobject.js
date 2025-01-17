@@ -77,6 +77,14 @@ function initcap(sysObj, txt) {
 	return txt.charAt(0).toUpperCase() + txt.slice(1);
 }
 
+function dateString(sysObj, timestamp) {
+	return new Date(Number(timestamp)).toLocaleDateString();
+}
+
+function timeString(sysObj, timestamp) {
+	return new Date(Number(timestamp)).toLocaleTimeString();
+}
+
 export function replaceAll() {
 	if (arguments.length != 4)
 		return "(Error: replaceAll arg count)";
@@ -354,6 +362,8 @@ export function stripjunk(filter, str) {
 		this.filter.functions['concat'] = concat;
 		this.filter.functions['striphtml'] = striphtml;
 		this.filter.functions['replaceAll'] = replaceAll;
+		this.filter.functions['dateString'] = dateString;
+		this.filter.functions['timeString'] = timeString;
 
 		this.defs = [];
 		this.defs['title'] = this.title;
