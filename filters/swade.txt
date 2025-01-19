@@ -63,8 +63,6 @@
 @@if{img}
 <p class="center"><img src="@{img}" alt="@{name}" width="@{imgheight}"></p>
 @@endif
-<p><b>CV: @{cv}.</b> @{cvDetails}</p>
-<p><b>Date Created:</b> @{dateString(_stats.createdTime)} @{timeString(_stats.createdTime)}, <b>Modified:</b> @{dateString(_stats.modifiedTime)} @{timeString(_stats.modifiedTime)}</p>
 @@macro{showdie(DIE, MOD)}
 d@{DIE}@@if{MOD>0}+@{MOD}@@end@@if{MOD<0}@{MOD}@@end
 @@endmacro
@@ -232,6 +230,9 @@ Vigor: @@call{showdie(system.attributes.vigor.die.sides, system.attributes.vigor
 @@if{rank > 11 && rank<16}Heroic@@endif
 @@if{rank>15}Legendary@@endif
 @@endif
+<h3>Combat Value: @{cv}</h3>
+<p>@{cvDetails}</p>
+<p><b>Date Created:</b> @{dateString(_stats.createdTime)} @{timeString(_stats.createdTime)}, <b>Modified:</b> @{dateString(_stats.modifiedTime)} @{timeString(_stats.modifiedTime)}</p>
 </div>
 <hr>
 

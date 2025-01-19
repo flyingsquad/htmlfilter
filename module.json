@@ -25,8 +25,8 @@
     "verified": "12"
   },
   "esmodules": ["htmlfilter.js"],
-  "version": "1.1.8",
+  "version": "1.1.9",
   "url": "https://github.com/flyingsquad/htmlfilter",
   "manifest": "https://raw.githubusercontent.com/flyingsquad/htmlfilter/main/module.json",
-  "download": "https://github.com/flyingsquad/htmlfilter/archive/refs/tags/v1.1.8.zip"
+  "download": "https://github.com/flyingsquad/htmlfilter/archive/refs/tags/v1.1.9.zip"
 }
