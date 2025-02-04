@@ -372,6 +372,10 @@ export function stripjunk(filter, str) {
 		this.defs['showDetails'] = game.settings.get('htmlfilter', 'details');
 		this.defs['maxDetails'] = Number(game.settings.get('htmlfilter', 'maxdetails'));
 		this.defs['showSpellbook'] = game.settings.get('htmlfilter', 'spellbook');
+		const userid = this.actor?._stats?.lastModifiedBy;
+		const editor = game.users.get(userid);
+		if (editor)
+			this.defs['lastModifiedBy'] = editor?.name;
 
 		let players = '';
 		let owners = this.actor?.ownership;
@@ -388,5 +392,5 @@ export function stripjunk(filter, str) {
 		this.defs['playername'] = players;
 	}
 	
- }
+}
  

@@ -232,7 +232,7 @@ Vigor: @@call{showdie(system.attributes.vigor.die.sides, system.attributes.vigor
 @@endif
 <h3>Combat Value: @{cv}</h3>
 <p>@{cvDetails}</p>
-<p><b>Date Created:</b> @{dateString(_stats.createdTime)} @{timeString(_stats.createdTime)}, <b>Modified:</b> @{dateString(_stats.modifiedTime)} @{timeString(_stats.modifiedTime)}</p>
+<p><b>Date Created:</b> @{dateString(_stats.createdTime)} @{timeString(_stats.createdTime)}, <b>Modified:</b> @{dateString(_stats.modifiedTime)} @{timeString(_stats.modifiedTime)} by @{lastModifiedBy}</p>
 </div>
 <hr>
 
