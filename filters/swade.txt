@@ -162,7 +162,7 @@ Vigor: @@call{showdie(system.attributes.vigor.die.sides, system.attributes.vigor
 <p class="exdent"><b>@{item.name}</b></p>
 <div class="indent">
 @@if{item.system.trapping}<p>Trappings: @{item.system.trapping}</p>@@endif
-<p>Power Points: @{item.system.pp}, Duration: @{item.system.duration}, Range: @{item.system.range}@@if{item.system.damage}, Damage: @{item.system.damage}@@endif</p>
+<p>Power Points: @{item.system.pp}@@if{item.system.actions.traitMod}, Trait Modifier: @{item.system.actions.traitMod}@@endif, Duration: @{item.system.duration}, Range: @{item.system.range}@@if{item.system.damage}, Damage: @{item.system.damage}@@if{item.system.actions.dmgMod}@{item.system.actions.dmgMod}@@endif@@endif@@if{item.system.ap}, AP: @{item.system.ap}@@endif@@if{item.system.arcane}, Arcane: @{item.system.arcane}@@endif</p>
 @@if{showDetails}
 @@if{item.system.description}
 <p>@{item.system.description}</p>
