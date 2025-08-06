@@ -1,0 +1,241 @@
+<html>
+
+<head>
+
+<title>@{title}</title>
+
+<STYLE type="text/css" media="screen,print">
+
+	h2 {
+		font-family: "Roboto Slab", serif;
+		font-size: 16pt;
+		font-weight: bold;
+		margin-bottom: 0;
+		margin-top: 10pt;
+		page-break-after: avoid;
+	}
+
+	h3 {
+		font-family: "Roboto Slab", serif;
+		font-size: 14pt;
+		font-weight: bold;
+		margin-bottom: 0;
+		margin-top: 10pt;
+		page-break-after: avoid;
+	}
+
+	p {
+		font-family: "Bookman Old Style", serif;
+		font-size: 12pt;
+		font-weight: normal;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.exdent {
+		text-indent: -.2in;
+		margin-left: .2in;
+	}
+	.indent {
+		margin-left: .2in;
+	}
+	.center {
+		text-align: center;
+	}
+
+	div.twocol {
+		column-count: 2;
+		column-gap: 0.25in;
+		margin-top: 0.25in;
+	}
+
+	.keepnext {
+		page-break-after: avoid;
+	}
+
+</STYLE>
+
+</head>
+
+<body>
+<div  class="twocol">
+<h2>@{system.wildcard?'[WC] ':''}@{name}</h2>
+@@if{img}
+<p class="center"><img src="@{img}" alt="@{name}" width="@{imgheight}"></p>
+@@endif
+@@macro{showdie(DIE, MOD)}
+d@{DIE}@@if{MOD>0}+@{MOD}@@end@@if{MOD<0}@{MOD}@@end
+@@endmacro
+@@define{archetype=system.details.archetype}
+@@if{!archetype}
+@@foreach{ability}
+@@if{item.system.subtype = 'archetype'}
+@@define{archetype=item.name}
+@@endif
+@@endforeach
+@@endif
+@@if{archetype}
+<p class="exdent"><b>Archetype:</b> @{archetype}</p>
+@@endif
+@@if{system.details.species.name}<p class="exdent"><b>Ancestry:</b> @{system.details.species.name}</p>@@endif
+@@if{type = 'character' || type = 'npc'}
+@@if{count('ancestry')}
+@@foreach{ancestry}
+	<p class="exdent"><b>Ancestry:</b> @{item.name}</p>
+	@@if{showDetails && item.system.description}
+		<div class="indent">
+			@{item.system.description}
+		</div>
+	@@endif
+@@endforeach
+@@endif
+@@if{system.stats.size || system.wounds.max}<p class="exdent"><b>Size:</b> @{system.stats.size}@@if{system.wounds.max>0}, <b>Wounds:</b> @{system.wounds.max}@@endif</p>@@endif
+<p class="exdent">
+<b>Attributes:</b>
+Agility: @@call{showdie(system.attributes.agility.die.sides, system.attributes.agility.die.modifier)},
+Smarts: @@call{showdie(system.attributes.smarts.die.sides, system.attributes.smarts.die.modifier)},
+Spirit: @@call{showdie(system.attributes.spirit.die.sides, system.attributes.spirit.die.modifier)},
+Strength: @@call{showdie(system.attributes.strength.die.sides, system.attributes.strength.die.modifier)},
+Vigor: @@call{showdie(system.attributes.vigor.die.sides, system.attributes.vigor.die.modifier)}
+</p>
+@@if{count('skill')>0}
+	<p class="exdent"><b>Skills:</b>
+	@@define{comma=''}@@define{sortKey='name'}
+	@@foreach{skill}@{comma}@{item.name} @@call{showdie(item.system.die.sides,item.system.die.modifier)}@@define{comma=', '}@@endforeach
+	</p>
+@@endif
+<p class="exdent"><b>Pace</b> @{system.pace.ground}, <b>Parry</b> @{system.stats.parry.value}@@if{system.stats.parry.shield}&nbsp;(@{system.stats.parry.shield})@@endif, <b>Toughness</b> @{system.stats.toughness.value}@@if{system.stats.toughness.armor}&nbsp;(@{system.stats.toughness.armor})@@endif@@if{system.powerPoints.general.max>0}, <b>Power Points: </b>@{system.powerPoints.general.max}@@endif</p>
+@@endif
+@@if{type = 'vehicle'}
+<p class="exdent"><b>Size:</b> @{system.size}, <b>Handling:</b> @{system.handling}, <b>Top Speed:</b> @{system.topspeed.value}, <b>Toughness:</b> @{system.toughness.total} (@{system.toughness.armor})</p>
+@@if{system.crew.required.max}
+<p class="exdent"><b>Crew: @{system.crew.required.value}/@{system.crew.required.max}</p>
+@@endif
+@@if{system.crew.optional.max}
+<p class="exdent"><b>Passengers: @{system.crew.optional.value}/@{system.crew.optional.max}</p>
+@@endif
+@@if{system.description}
+<h3>Description</h3>
+<p class="exdent">@{system.description}</p>
+@@endif
+@@endif
+@@macro{details()}
+@@if{showDetails && item.system.description}
+<div class="indent">
+@{item.system.description}
+</div>
+@@endif
+@@endmacro
+@@if{count('hindrance') > 0}
+<h3>Hindrances</h3>
+<p class="exdent">
+@@foreach{hindrance}
+<p class="exdent"><b>@{item.name}</b> (@{item.system.severity='either'?(item.system.major?'major':'minor'):item.system.severity})</p>
+@@call{details()}
+@@endforeach
+@@endif
+
+@@if{count('edge') > 0}
+<h3>Edges</h3>
+<p class="exdent">
+@@foreach{edge}
+<p class="exdent"><b>@{item.name}</b></p>
+@@call{details()}
+@@endforeach
+@@endif
+
+@@if{count('ability') > 0}
+<h3>Special Abilities</h3>
+<p class="exdent">
+@@foreach{ability}
+@@if{item.system.subtype != 'archetype'}
+<p class="exdent"><b>@{item.name}</b></p>
+@@call{details()}
+@@endif
+@@endforeach
+@@endif
+
+@@if{count('power') > 0}
+<h3>Powers</h3>
+<p class="exdent">
+@@foreach{power}
+<p class="exdent"><b>@{item.name}</b></p>
+<div class="indent">
+@@if{item.system.trapping}<p>Trappings: @{item.system.trapping}</p>@@endif
+<p>Power Points: @{item.system.pp}@@if{item.system.actions.traitMod}, Trait Modifier: @{item.system.actions.traitMod}@@endif, Duration: @{item.system.duration}, Range: @{item.system.range}@@if{item.system.damage}, Damage: @{item.system.damage}@@if{item.system.actions.dmgMod}@{item.system.actions.dmgMod}@@endif@@endif@@if{item.system.ap}, AP: @{item.system.ap}@@endif@@if{item.system.arcane}, Arcane: @{item.system.arcane}@@endif</p>
+@@if{showDetails}
+@@if{item.system.description}
+<p>@{item.system.description}</p>
+@@endif
+@@endif
+</div>
+@@endforeach
+</p>
+@@endif
+
+@@if{count('weapon')>0}
+	<h3>Attacks</h3>
+	@@foreach{weapon}
+		<p class="exdent"><b>@{item.name}</b>. Damage: @{replaceAll(item.system.damage, '@str', 'Strength')}@@if{item.system.rangeType}, Range: @{item.system.range}, RoF: @{item.system.rof}@@endif@@if{item.system.notes}, @{item.system.notes}@@endif</p>
+	@@endforeach
+@@endif
+
+@@if{count('armor')>0}
+<h3>Armor</h3>
+	@@foreach{armor}
+		<p class="exdent"><b>@{item.name}</b>. Armor @{item.system.armor}</p>
+	@@endforeach
+@@endif
+
+@@if{count('gear')>0}
+<h3>Gear</h3>
+	@@foreach{gear}
+		<p class="exdent"><b>@{item.name}.</b>@@if{item.system.quantity!=1}&#x0020;(x@{item.system.quantity})@@endif</p>
+		@@call{details()}
+	@@endforeach
+@@endif
+
+@@if{system.details.biography.value}
+<h3>Biography</h3>
+@{system.details.biography.value}
+@@endif
+
+@@if{system.details.appearance}
+<h3>Appearance</h3>
+@{system.details.appearance}
+@@end
+@@if{system.details.notes}
+<h3>Notes</h3>
+@{system.details.notes}
+@@endif
+
+@@if{count('system.advances.list')}
+<h3>Advances</h3>
+@@define{rank=0}
+@@foreach{system.advances.list}
+<p class="exdent">@{item.sort}.
+@@if{item.type = 0}New Edge@@endif
+@@if{item.type = 1}Raise Single Skill@@endif
+@@if{item.type = 2}Raise Two Skills@@endif
+@@if{item.type = 3}Raise Attribute@@endif
+@@if{item.type = 4}Decrease Hindrance@@endif@@if{item.planned}&#x0020(planned)@@endif</p>
+<div class="indent">
+@@if{item.notes}@{item.notes}@@endif
+</div>
+@@define{rank=max(rank,trunc(item.sort))}
+@@endforeach
+<p><b>Rank:</b> @@if{rank<4}Novice@@endif
+@@if{rank>3 && rank<8}Seasoned@@endif
+@@if{rank>7 && rank<12}Veteran@@endif
+@@if{rank > 11 && rank<16}Heroic@@endif
+@@if{rank>15}Legendary@@endif
+@@endif
+<h3>Combat Value: @{cv}</h3>
+<p>@{cvDetails}</p>
+<p><b>Date Created:</b> @{dateString(_stats.createdTime)} @{timeString(_stats.createdTime)}, <b>Modified:</b> @{dateString(_stats.modifiedTime)} @{timeString(_stats.modifiedTime)} by @{lastModifiedBy}</p>
+</div>
+<hr>
+
+</body>
+
+</html>

@@ -419,7 +419,15 @@ export class DnD5eObject extends SystemObject {
 		if (!initAbility)
 			initAbility = 'dex';
 		let initiative = Number(a.system.abilities?.[initAbility]?.mod);
-		initiative += Number(a.system.attributes.init.bonus);
+		let initBonus = a.system.attributes.init.bonus;
+		if (isNaN(initBonus)) {
+			let [part1, part2, part3] = initBonus.split('.');
+			if (part1 == '@abilities') {
+				initiative += a.system.abilities[part2][part3];
+			} else
+				initiative += Number(this.filter.evalexp(initBonus));
+		} else
+			initiative += Number(initBonus);
 		initiative += Number(a.flags.dnd5e?.initiativeAlert ? 5 : 0);
 		if (a.flags.dnd5e?.initiativeAdv)
 			initiative += '*';
@@ -734,11 +742,8 @@ export class DnD5eObject extends SystemObject {
 		if (range)
 			weapdeets += `, ${range}`;
 		
-		let damage = '';
-		w.system.damage.parts.forEach((d) => {
-			let dmg = this.getDamage(d[0], mod);
-			damage = cat(damage, ', plus ', `${dmg} ${d[1]}`);
-		});
+		let damage = w.system.damage.formula;
+		
 		if (damage)
 			weapdeets += `. Hit: ${damage}`;
 		if (w.system?.save.ability) {
