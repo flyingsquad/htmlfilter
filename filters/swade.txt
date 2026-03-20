@@ -71,11 +71,15 @@ d@{DIE}@@if{MOD>0}+@{MOD}@@end@@if{MOD<0}@{MOD}@@end
 @@foreach{ability}
 @@if{item.system.subtype = 'archetype'}
 @@define{archetype=item.name}
+@@define{archDesc=item.system.description}
 @@endif
 @@endforeach
 @@endif
 @@if{archetype}
 <p class="exdent"><b>Archetype:</b> @{archetype}</p>
+@@if{showDetails && archDesc}
+<div class="indent">@{archDesc}</div>
+@@endif
 @@endif
 @@if{system.details.species.name}<p class="exdent"><b>Ancestry:</b> @{system.details.species.name}</p>@@endif
 @@if{type = 'character' || type = 'npc'}
@@ -207,6 +211,10 @@ Vigor: @@call{showdie(system.attributes.vigor.die.sides, system.attributes.vigor
 @@if{system.details.notes}
 <h3>Notes</h3>
 @{system.details.notes}
+@@endif
+@@if{system.details.goals}
+<h3>Goals</h3>
+@{system.details.goals}
 @@endif
 
 @@if{count('system.advances.list')}

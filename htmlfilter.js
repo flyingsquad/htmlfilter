@@ -901,7 +901,7 @@ Hooks.on("getActorDirectoryEntryContext", (html, entries) => {
 Hooks.on("renderActorDirectory", (app, html, data) => {
 
     const filterButton = $("<button id='htmlfilter-button'><i class='fas fa-file-text'></i></i>Print Character Sheet</button>");
-    html.find(".directory-footer").append(filterButton);
+    $(html).find(".directory-footer").append(filterButton);
 
     filterButton.click(async (ev) => {
 		let tokens = canvas.tokens.controlled;
@@ -1003,6 +1003,10 @@ Hooks.once('init', async function () {
 
 function insertActorHeaderButtons(actorSheet, buttons) {
   let actor = actorSheet.object;
+  const canPrint = actor.isOwner || game.user.isGM;
+  if (!canPrint)
+	  return false;
+
   buttons.unshift({
     label: "Print",
     icon: "fas fa-file-text",
@@ -1028,3 +1032,79 @@ function insertActorHeaderButtons(actorSheet, buttons) {
 }
 
 Hooks.on("getActorSheetHeaderButtons", insertActorHeaderButtons);
+
+function documentContextOptions(app, options) {
+    options.push({
+        name: `Print Character Sheet`,
+        icon: '<i class="fas fa-file-text"></i>',
+        condition: () => game.user.isGM,
+        callback: async (li) =>  {
+            const entry = app.collection.get(li.dataset.entryId);
+            if (entry) {
+				let f;
+				try {
+					f = new HTMLFilter();
+					if (!await f.createtab())
+						return false;
+
+					f.setTitle(entry.name);
+					f.filter(entry);
+				} catch (msg) {
+					ui.notifications.warn(msg);
+				} finally {
+					if (f)
+						f.finish();
+				}
+			}
+        },
+    });
+}
+
+const hooknames = [
+    "getActorContextOptions"
+];
+
+for (const hook of hooknames)
+    Hooks.on(hook, documentContextOptions);
+
+
+async function procFolder(filter, folder) {
+    for (const f of folder.getSubfolders(false)) {
+        await procFolder(filter, f);
+    }
+
+    for (const actor of folder.contents) {
+        await filter.filter(actor);
+    }
+}
+
+Hooks.on('getFolderContextOptions', (app, options) => {
+	if (app.options.id != 'actors')
+		return;
+    options.push({
+        name: `Print Character Sheets`,
+        icon: '<i class="fas fa-file-text"></i>',
+        condition: () => game.user.isGM,
+        callback: async header => {
+            const folder = await fromUuid(header.closest(".directory-item").dataset.uuid);
+            if (folder) {
+				let filter;
+				try {
+					filter = new HTMLFilter();
+					if (!await filter.createtab())
+						return false;
+
+					filter.setTitle(folder.name);
+				
+					await procFolder(filter, folder);
+
+				} catch (msg) {
+					ui.notifications.warn(msg);
+				} finally {
+					filter.finish();
+				}
+			}
+        },
+    });
+})
+

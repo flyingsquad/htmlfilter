@@ -6,19 +6,24 @@
 
 <STYLE type="text/css" media="screen,print">
 
+	@font-face {
+	  font-family: 'Creepster';
+	  src: url('../world/the-haunting/fonts/Creepster-Regular.ttf') format('truetype');
+	}
+
 	h2 {
-		font-family: "Roboto Slab", serif;
+		font-family: "Creepster", serif;
 		font-size: 16pt;
-		font-weight: bold;
+		font-weight: normal;
 		margin-bottom: 0;
 		margin-top: 10pt;
 		page-break-after: avoid;
 	}
 
 	h3 {
-		font-family: "Roboto Slab", serif;
+		font-family: "Creepster", serif;
 		font-size: 14pt;
-		font-weight: bold;
+		font-weight: normal;
 		margin-bottom: 0;
 		margin-top: 10pt;
 		page-break-after: avoid;
@@ -26,10 +31,11 @@
 
 	p {
 		font-family: "Bookman Old Style", serif;
-		font-size: 12pt;
+		font-size: 13pt;
 		font-weight: normal;
 		margin-top: 0;
 		margin-bottom: 0;
+		text-indent: 0.25;
 	}
 
 	.exdent {
@@ -71,11 +77,15 @@ d@{DIE}@@if{MOD>0}+@{MOD}@@end@@if{MOD<0}@{MOD}@@end
 @@foreach{ability}
 @@if{item.system.subtype = 'archetype'}
 @@define{archetype=item.name}
+@@define{archDesc=item.system.description}
 @@endif
 @@endforeach
 @@endif
 @@if{archetype}
 <p class="exdent"><b>Archetype:</b> @{archetype}</p>
+@@if{showDetails && archDesc}
+<div class="indent">@{archDesc}</div>
+@@endif
 @@endif
 @@if{system.details.species.name}<p class="exdent"><b>Ancestry:</b> @{system.details.species.name}</p>@@endif
 @@if{type = 'character' || type = 'npc'}
@@ -181,9 +191,9 @@ Vigor: @@call{showdie(system.attributes.vigor.die.sides, system.attributes.vigor
 @@endif
 
 @@if{count('armor')>0}
-<h3>Armor</h3>
+<h3>Armour</h3>
 	@@foreach{armor}
-		<p class="exdent"><b>@{item.name}</b>. Armor @{item.system.armor}</p>
+		<p class="exdent"><b>@{item.name}</b>. Armour @{item.system.armor}</p>
 	@@endforeach
 @@endif
 
