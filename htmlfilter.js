@@ -1002,7 +1002,7 @@ Hooks.once('init', async function () {
 });
 
 function insertActorHeaderButtons(actorSheet, buttons) {
-  let actor = actorSheet.object;
+  let actor = actorSheet.actor;
   const canPrint = actor.isOwner || game.user.isGM;
   if (!canPrint)
 	  return false;
@@ -1011,7 +1011,7 @@ function insertActorHeaderButtons(actorSheet, buttons) {
     label: "Print",
     icon: "fas fa-file-text",
     class: "html-filter-button",
-    onclick: async () => {
+    onClick: async () => {
 		let f;
 		try {
 			f = new HTMLFilter();
@@ -1031,7 +1031,7 @@ function insertActorHeaderButtons(actorSheet, buttons) {
   });
 }
 
-Hooks.on("getActorSheetHeaderButtons", insertActorHeaderButtons);
+Hooks.on("getHeaderControlsActorSheetV2", insertActorHeaderButtons);
 
 function documentContextOptions(app, options) {
     options.push({
